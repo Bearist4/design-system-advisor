@@ -150,6 +150,12 @@ export default function DashboardPage() {
                   </Badge>
                 </div>
               )}
+              <Link href="/settings">
+                <Button variant="outline" size="sm">
+                  <Settings className="h-4 w-4 mr-2" />
+                  Theme Settings
+                </Button>
+              </Link>
               <Link href="/profile">
                 <Button variant="outline" size="sm">
                   <User className="h-4 w-4 mr-2" />

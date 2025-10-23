@@ -2,6 +2,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 import { LogOut, User } from "lucide-react"
+import { ThemeToggleIcon } from "./theme-toggle"
 
 export interface NavbarProps {
   user?: {
@@ -28,6 +29,7 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
             </div>
             
             <div className="flex items-center space-x-4">
+              <ThemeToggleIcon />
               {user ? (
                 <>
                   <div className="flex items-center space-x-2">

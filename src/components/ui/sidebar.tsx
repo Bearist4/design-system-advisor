@@ -4,6 +4,7 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Button } from "./button"
 import { Badge } from "./badge"
+import { Tooltip } from "./tooltip"
 import { Upload, Home, Settings, FileText, ChevronDown, ChevronRight, Menu, X, User, Shield, Building } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -132,7 +133,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       const isExpanded = expandedSections.has(item.label)
 
       if (hasChildren) {
-        return (
+        const parentElement = (
           <div key={item.label} className="space-y-1">
             <div
               role="button"
@@ -143,7 +144,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
               onKeyDown={(e) => handleKeyDown(e, () => toggleSection(item.label))}
               className={cn(
                 "flex items-center justify-between w-full px-3 py-2 text-sm rounded-md transition-all cursor-pointer",
-                "hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1",
+                "hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                 isActive && "bg-secondary text-secondary-foreground",
                 depth > 0 && "pl-9"
               )}
@@ -179,13 +180,23 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
             )}
           </div>
         )
+
+        if (isCollapsed) {
+          return (
+            <Tooltip key={item.label} content={item.label} side="right">
+              {parentElement}
+            </Tooltip>
+          )
+        }
+
+        return parentElement
       }
 
       const content = (
         <div
           className={cn(
             "flex items-center justify-between w-full px-3 py-2 text-sm rounded-md transition-all",
-            "hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1",
+            "hover:bg-accent hover:text-accent-foreground",
             isActive && "bg-secondary text-secondary-foreground font-medium",
             depth > 0 && "pl-9"
           )}
@@ -208,17 +219,30 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       )
 
       if (item.href) {
-        return (
+        const linkElement = (
           <Link
             key={item.href}
             href={item.href}
-            className="block focus:outline-none"
+            className={cn(
+              "block rounded-md transition-all",
+              "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+            )}
             aria-label={item.label}
             aria-current={isActive ? "page" : undefined}
           >
             {content}
           </Link>
         )
+
+        if (isCollapsed) {
+          return (
+            <Tooltip key={item.href} content={item.label} side="right">
+              {linkElement}
+            </Tooltip>
+          )
+        }
+
+        return linkElement
       }
 
       return <div key={item.label}>{content}</div>

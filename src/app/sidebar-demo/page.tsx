@@ -89,7 +89,15 @@ export default function SidebarDemoPage() {
                     <div className="flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white text-sm">✓</div>
                     <div>
                       <h3 className="font-semibold">Keyboard Navigation</h3>
-                      <p className="text-sm text-muted-foreground">Full keyboard support with Enter/Space keys</p>
+                      <p className="text-sm text-muted-foreground">Full keyboard support with visible focus states</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start space-x-3">
+                    <div className="flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white text-sm">✓</div>
+                    <div>
+                      <h3 className="font-semibold">Tooltips</h3>
+                      <p className="text-sm text-muted-foreground">Hover or focus on collapsed items to see labels</p>
                     </div>
                   </div>
 
@@ -130,7 +138,7 @@ export default function SidebarDemoPage() {
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">3</span>
-                  <p>Use Tab key to navigate through menu items and Enter/Space to activate them</p>
+                  <p>Use Tab key to navigate - notice the visible focus ring on each item</p>
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">4</span>
@@ -138,6 +146,10 @@ export default function SidebarDemoPage() {
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">5</span>
+                  <p>Collapse the sidebar and hover over icons to see tooltips</p>
+                </div>
+                <div className="flex items-start space-x-2">
+                  <span className="font-mono bg-muted px-2 py-1 rounded">6</span>
                   <p>Navigate to different pages to see active state highlighting</p>
                 </div>
               </div>

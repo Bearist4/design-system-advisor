@@ -97,7 +97,7 @@ export default function SidebarDemoPage() {
                     <div className="flex items-center justify-center w-6 h-6 rounded-full bg-green-500 text-white text-sm">✓</div>
                     <div>
                       <h3 className="font-semibold">Tooltips</h3>
-                      <p className="text-sm text-muted-foreground">Hover or focus on collapsed items to see labels</p>
+                      <p className="text-sm text-muted-foreground">Smooth dissolve effect right next to icons</p>
                     </div>
                   </div>
 

@@ -25,21 +25,63 @@ export function Tooltip({
   const [isFocused, setIsFocused] = React.useState(false)
   const [position, setPosition] = React.useState({ top: 0, left: 0 })
   const [mounted, setMounted] = React.useState(false)
+  const [positionReady, setPositionReady] = React.useState(false)
   const timeoutRef = React.useRef<NodeJS.Timeout>()
   const triggerRef = React.useRef<HTMLElement>(null)
 
+  const calculatePosition = React.useCallback(() => {
+    if (!triggerRef.current) return { top: 0, left: 0 }
+
+    const rect = triggerRef.current.getBoundingClientRect()
+    const scrollX = window.scrollX || window.pageXOffset
+    const scrollY = window.scrollY || window.pageYOffset
+
+    let top = 0
+    let left = 0
+
+    switch (side) {
+      case 'top':
+        top = rect.top + scrollY
+        left = rect.left + scrollX + rect.width / 2
+        break
+      case 'right':
+        top = rect.top + scrollY + rect.height / 2
+        left = rect.right + scrollX
+        break
+      case 'bottom':
+        top = rect.bottom + scrollY
+        left = rect.left + scrollX + rect.width / 2
+        break
+      case 'left':
+        top = rect.top + scrollY + rect.height / 2
+        left = rect.left + scrollX
+        break
+    }
+
+    return { top, left }
+  }, [side])
+
   const showTooltip = React.useCallback(() => {
-    if (disabled) return
+    if (disabled || !triggerRef.current) return
+    
     timeoutRef.current = setTimeout(() => {
-      setIsVisible(true)
+      // Calculate position FIRST, then show
+      const newPosition = calculatePosition()
+      setPosition(newPosition)
+      setPositionReady(true)
+      // Small delay to ensure position is set before making visible
+      requestAnimationFrame(() => {
+        setIsVisible(true)
+      })
     }, delayDuration)
-  }, [delayDuration, disabled])
+  }, [delayDuration, disabled, calculatePosition])
 
   const hideTooltip = React.useCallback(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current)
     }
     setIsVisible(false)
+    setPositionReady(false)
   }, [])
 
   const handleMouseEnter = () => {
@@ -70,38 +112,6 @@ export function Tooltip({
       }
     }
   }, [])
-
-  React.useEffect(() => {
-    if (isVisible && triggerRef.current) {
-      const rect = triggerRef.current.getBoundingClientRect()
-      const scrollX = window.scrollX || window.pageXOffset
-      const scrollY = window.scrollY || window.pageYOffset
-
-      let top = 0
-      let left = 0
-
-      switch (side) {
-        case 'top':
-          top = rect.top + scrollY
-          left = rect.left + scrollX + rect.width / 2
-          break
-        case 'right':
-          top = rect.top + scrollY + rect.height / 2
-          left = rect.right + scrollX
-          break
-        case 'bottom':
-          top = rect.bottom + scrollY
-          left = rect.left + scrollX + rect.width / 2
-          break
-        case 'left':
-          top = rect.top + scrollY + rect.height / 2
-          left = rect.left + scrollX
-          break
-      }
-
-      setPosition({ top, left })
-    }
-  }, [isVisible, side])
 
   const child = React.Children.only(children) as React.ReactElement<any>
 
@@ -163,7 +173,7 @@ export function Tooltip({
     return transform
   }
 
-  const tooltipContent = isVisible && !disabled && mounted && (
+  const tooltipContent = isVisible && mounted && positionReady && (
     <div
       role="tooltip"
       style={{
@@ -176,7 +186,7 @@ export function Tooltip({
       className={cn(
         "px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-lg",
         "whitespace-nowrap pointer-events-none",
-        "animate-in fade-in-0 zoom-in-95 duration-150"
+        "animate-fade-in"
       )}
     >
       {content}
@@ -195,7 +205,7 @@ export function Tooltip({
   return (
     <>
       {clonedChild}
-      {mounted && typeof window !== 'undefined' && createPortal(
+      {mounted && typeof window !== 'undefined' && !disabled && createPortal(
         tooltipContent,
         document.body
       )}

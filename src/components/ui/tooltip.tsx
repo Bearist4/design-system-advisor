@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from "react"
+import { createPortal } from "react-dom"
 import { cn } from "@/lib/utils"
 
 interface TooltipProps {
@@ -22,7 +23,10 @@ export function Tooltip({
 }: TooltipProps) {
   const [isVisible, setIsVisible] = React.useState(false)
   const [isFocused, setIsFocused] = React.useState(false)
+  const [position, setPosition] = React.useState({ top: 0, left: 0 })
+  const [mounted, setMounted] = React.useState(false)
   const timeoutRef = React.useRef<NodeJS.Timeout>()
+  const triggerRef = React.useRef<HTMLElement>(null)
 
   const showTooltip = React.useCallback(() => {
     if (disabled) return
@@ -59,6 +63,7 @@ export function Tooltip({
   }
 
   React.useEffect(() => {
+    setMounted(true)
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current)
@@ -66,66 +71,134 @@ export function Tooltip({
     }
   }, [])
 
-  const child = React.Children.only(children)
+  React.useEffect(() => {
+    if (isVisible && triggerRef.current) {
+      const rect = triggerRef.current.getBoundingClientRect()
+      const scrollX = window.scrollX || window.pageXOffset
+      const scrollY = window.scrollY || window.pageYOffset
+
+      let top = 0
+      let left = 0
+
+      switch (side) {
+        case 'top':
+          top = rect.top + scrollY
+          left = rect.left + scrollX + rect.width / 2
+          break
+        case 'right':
+          top = rect.top + scrollY + rect.height / 2
+          left = rect.right + scrollX
+          break
+        case 'bottom':
+          top = rect.bottom + scrollY
+          left = rect.left + scrollX + rect.width / 2
+          break
+        case 'left':
+          top = rect.top + scrollY + rect.height / 2
+          left = rect.left + scrollX
+          break
+      }
+
+      setPosition({ top, left })
+    }
+  }, [isVisible, side])
+
+  const child = React.Children.only(children) as React.ReactElement<any>
 
   const clonedChild = React.cloneElement(child, {
+    ref: (node: HTMLElement | null) => {
+      if (node) {
+        triggerRef.current = node
+      }
+      // Preserve any existing ref
+      const existingRef = (child as any).ref
+      if (typeof existingRef === 'function') {
+        existingRef(node)
+      } else if (existingRef) {
+        existingRef.current = node
+      }
+    },
     onMouseEnter: (e: React.MouseEvent) => {
       handleMouseEnter()
-      child.props.onMouseEnter?.(e)
+      if (child.props && typeof child.props.onMouseEnter === 'function') {
+        child.props.onMouseEnter(e)
+      }
     },
     onMouseLeave: (e: React.MouseEvent) => {
       handleMouseLeave()
-      child.props.onMouseLeave?.(e)
+      if (child.props && typeof child.props.onMouseLeave === 'function') {
+        child.props.onMouseLeave(e)
+      }
     },
     onFocus: (e: React.FocusEvent) => {
       handleFocus()
-      child.props.onFocus?.(e)
+      if (child.props && typeof child.props.onFocus === 'function') {
+        child.props.onFocus(e)
+      }
     },
     onBlur: (e: React.FocusEvent) => {
       handleBlur()
-      child.props.onBlur?.(e)
+      if (child.props && typeof child.props.onBlur === 'function') {
+        child.props.onBlur(e)
+      }
     },
   })
 
-  const sideClasses = {
-    top: 'bottom-full left-1/2 -translate-x-1/2 mb-2',
-    right: 'left-full top-1/2 -translate-y-1/2 ml-2',
-    bottom: 'top-full left-1/2 -translate-x-1/2 mt-2',
-    left: 'right-full top-1/2 -translate-y-1/2 mr-2',
+  const getTransformStyle = () => {
+    let transform = ''
+    switch (side) {
+      case 'top':
+        transform = 'translate(-50%, -100%) translateY(-8px)'
+        break
+      case 'right':
+        transform = 'translate(0, -50%) translateX(8px)'
+        break
+      case 'bottom':
+        transform = 'translate(-50%, 0) translateY(8px)'
+        break
+      case 'left':
+        transform = 'translate(-100%, -50%) translateX(-8px)'
+        break
+    }
+    return transform
   }
 
-  const alignClasses = {
-    start: side === 'top' || side === 'bottom' ? 'left-0 translate-x-0' : 'top-0 translate-y-0',
-    center: '',
-    end: side === 'top' || side === 'bottom' ? 'left-auto right-0 translate-x-0' : 'top-auto bottom-0 translate-y-0',
-  }
+  const tooltipContent = isVisible && !disabled && mounted && (
+    <div
+      role="tooltip"
+      style={{
+        position: 'fixed',
+        top: `${position.top}px`,
+        left: `${position.left}px`,
+        transform: getTransformStyle(),
+        zIndex: 9999,
+      }}
+      className={cn(
+        "px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-lg",
+        "whitespace-nowrap pointer-events-none",
+        "animate-in fade-in-0 zoom-in-95 duration-150"
+      )}
+    >
+      {content}
+      <div
+        className={cn(
+          "absolute w-2 h-2 bg-gray-900 transform rotate-45",
+          side === 'top' && "bottom-[-4px] left-1/2 -translate-x-1/2",
+          side === 'right' && "left-[-4px] top-1/2 -translate-y-1/2",
+          side === 'bottom' && "top-[-4px] left-1/2 -translate-x-1/2",
+          side === 'left' && "right-[-4px] top-1/2 -translate-y-1/2"
+        )}
+      />
+    </div>
+  )
 
   return (
-    <div className="relative inline-block">
+    <>
       {clonedChild}
-      {isVisible && !disabled && (
-        <div
-          role="tooltip"
-          className={cn(
-            "absolute z-50 px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-lg",
-            "whitespace-nowrap pointer-events-none",
-            "animate-in fade-in-0 zoom-in-95",
-            sideClasses[side],
-            align !== 'center' && alignClasses[align]
-          )}
-        >
-          {content}
-          <div
-            className={cn(
-              "absolute w-2 h-2 bg-gray-900 transform rotate-45",
-              side === 'top' && "bottom-[-4px] left-1/2 -translate-x-1/2",
-              side === 'right' && "left-[-4px] top-1/2 -translate-y-1/2",
-              side === 'bottom' && "top-[-4px] left-1/2 -translate-x-1/2",
-              side === 'left' && "right-[-4px] top-1/2 -translate-y-1/2"
-            )}
-          />
-        </div>
+      {mounted && typeof window !== 'undefined' && createPortal(
+        tooltipContent,
+        document.body
       )}
-    </div>
+    </>
   )
 }

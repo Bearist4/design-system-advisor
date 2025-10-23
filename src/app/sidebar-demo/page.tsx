@@ -130,7 +130,7 @@ export default function SidebarDemoPage() {
               <div className="space-y-3 text-sm">
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">1</span>
-                  <p>Click the menu icon in the sidebar header to toggle between full and icon-only views</p>
+                  <p>Click the menu icon in the sidebar header to toggle between full and icon-only views - notice the smooth animation</p>
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">2</span>
@@ -142,14 +142,18 @@ export default function SidebarDemoPage() {
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">4</span>
-                  <p>Resize your browser to mobile width (&lt; 768px) to see the mobile sidebar with overlay</p>
+                  <p>Collapse the sidebar and hover over icons - tooltips appear outside the sidebar without clipping</p>
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">5</span>
-                  <p>Collapse the sidebar and hover over icons to see tooltips</p>
+                  <p>Tab to collapsed icons - tooltips also show on keyboard focus</p>
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">6</span>
+                  <p>Resize your browser to mobile width (&lt; 768px) to see the mobile sidebar with overlay</p>
+                </div>
+                <div className="flex items-start space-x-2">
+                  <span className="font-mono bg-muted px-2 py-1 rounded">7</span>
                   <p>Navigate to different pages to see active state highlighting</p>
                 </div>
               </div>

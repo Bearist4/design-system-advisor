@@ -143,16 +143,20 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
               onClick={() => toggleSection(item.label)}
               onKeyDown={(e) => handleKeyDown(e, () => toggleSection(item.label))}
               className={cn(
-                "flex items-center justify-between w-full px-3 py-2 text-sm rounded-md transition-all cursor-pointer",
+                "flex items-center w-full px-3 py-2 text-sm rounded-md transition-colors cursor-pointer",
                 "hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                 isActive && "bg-secondary text-secondary-foreground",
+                isCollapsed ? "justify-center" : "justify-between",
                 depth > 0 && "pl-9"
               )}
             >
-              <div className="flex items-center flex-1 min-w-0">
+              <div className={cn(
+                "flex items-center",
+                isCollapsed ? "justify-center w-full" : "flex-1 min-w-0"
+              )}>
                 <item.icon className={cn(
                   "h-4 w-4 shrink-0",
-                  isCollapsed ? "" : "mr-3"
+                  !isCollapsed && "mr-3"
                 )} />
                 {!isCollapsed && (
                   <span className="truncate">{item.label}</span>
@@ -195,16 +199,20 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       const content = (
         <div
           className={cn(
-            "flex items-center justify-between w-full px-3 py-2 text-sm rounded-md transition-all",
+            "flex items-center w-full px-3 py-2 text-sm rounded-md transition-colors",
             "hover:bg-accent hover:text-accent-foreground",
             isActive && "bg-secondary text-secondary-foreground font-medium",
+            isCollapsed ? "justify-center" : "justify-between",
             depth > 0 && "pl-9"
           )}
         >
-          <div className="flex items-center flex-1 min-w-0">
+          <div className={cn(
+            "flex items-center",
+            isCollapsed ? "justify-center w-full" : "flex-1 min-w-0"
+          )}>
             <item.icon className={cn(
               "h-4 w-4 shrink-0",
-              isCollapsed ? "" : "mr-3"
+              !isCollapsed && "mr-3"
             )} />
             {!isCollapsed && (
               <span className="truncate">{item.label}</span>
@@ -251,17 +259,20 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     const sidebarContent = (
       <>
         <div className={cn(
-          "flex items-center justify-between p-4 border-b",
-          isCollapsed && "justify-center"
+          "flex items-center p-4 border-b transition-all duration-200",
+          isCollapsed ? "justify-center px-2" : "justify-between"
         )}>
           {!isCollapsed && (
-            <h2 className="text-lg font-semibold truncate">Navigation</h2>
+            <h2 className="text-lg font-semibold truncate transition-opacity duration-200">Navigation</h2>
           )}
           <Button
             variant="ghost"
             size="icon"
             onClick={toggleCollapse}
-            className="shrink-0 h-8 w-8"
+            className={cn(
+              "shrink-0 h-8 w-8 transition-all duration-200",
+              isCollapsed && "mx-auto"
+            )}
             aria-label={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
             aria-expanded={!isCollapsed}
           >
@@ -269,7 +280,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           </Button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto p-3 space-y-6" role="navigation" aria-label="Main navigation">
+        <nav className="flex-1 overflow-y-auto overflow-x-visible p-3 space-y-6" role="navigation" aria-label="Main navigation">
           {sections.map((section, index) => (
             <div key={section.title || index} className="space-y-2">
               {section.title && !isCollapsed && (
@@ -312,7 +323,8 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
         <div
           ref={ref}
           className={cn(
-            "hidden md:flex h-full flex-col border-r bg-background transition-all duration-300 ease-in-out",
+            "hidden md:flex h-full flex-col border-r bg-background overflow-visible",
+            "transition-[width] duration-200 ease-in-out will-change-[width]",
             isCollapsed ? "w-16" : "w-64",
             className
           )}

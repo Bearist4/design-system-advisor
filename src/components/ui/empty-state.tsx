@@ -41,8 +41,8 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
     return (
       <div
         ref={ref}
-        role="status"
-        aria-label="Empty state"
+        role="region"
+        aria-labelledby="empty-state-title"
         className={cn(
           "flex flex-col items-center justify-center py-12 px-4 text-center",
           className
@@ -57,7 +57,7 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
           )}
         </div>
         
-        <h3 className="mb-2 text-xl font-semibold text-foreground">
+        <h3 id="empty-state-title" className="mb-2 text-xl font-semibold text-foreground">
           {title}
         </h3>
         
@@ -70,14 +70,14 @@ const EmptyState = React.forwardRef<HTMLDivElement, EmptyStateProps>(
         {children}
 
         {(action || secondaryAction) && (
-          <div className="flex flex-wrap gap-3 mt-4">
+          <div className="flex flex-wrap gap-3 mt-4" role="group" aria-label="Empty state actions">
             {action && (
-              <Button onClick={action.onClick}>
+              <Button onClick={action.onClick} aria-describedby="empty-state-title">
                 {action.label}
               </Button>
             )}
             {secondaryAction && (
-              <Button variant="outline" onClick={secondaryAction.onClick}>
+              <Button variant="outline" onClick={secondaryAction.onClick} aria-describedby="empty-state-title">
                 {secondaryAction.label}
               </Button>
             )}

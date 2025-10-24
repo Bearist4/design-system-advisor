@@ -8,10 +8,10 @@ const statusIndicatorVariants = cva(
   {
     variants: {
       variant: {
-        success: "bg-success/10 text-success border border-success/20",
-        warning: "bg-warning/10 text-warning border border-warning/20",
-        error: "bg-error/10 text-error border border-error/20",
-        info: "bg-info/10 text-info border border-info/20",
+        success: "bg-success text-success-foreground border border-success",
+        warning: "bg-warning text-warning-foreground border border-warning",
+        error: "bg-error text-error-foreground border border-error",
+        info: "bg-info text-info-foreground border border-info",
       },
       size: {
         sm: "px-2 py-1 text-xs",
@@ -57,8 +57,8 @@ const StatusIndicator = React.forwardRef<HTMLDivElement, StatusIndicatorProps>(
         {onClose && (
           <button
             onClick={onClose}
-            className="ml-1 rounded-sm opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-opacity"
-            aria-label="Close"
+            className="ml-1 rounded-sm opacity-80 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-current transition-opacity"
+            aria-label="Close status indicator"
           >
             <X className="h-3 w-3" />
           </button>

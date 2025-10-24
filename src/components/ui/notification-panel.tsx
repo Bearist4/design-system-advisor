@@ -39,6 +39,9 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
     return (
       <div
         ref={ref}
+        role="dialog"
+        aria-labelledby="notification-panel-title"
+        aria-describedby="notification-panel-description"
         className={cn(
           "flex h-full max-h-[600px] w-full flex-col rounded-lg border bg-popover text-popover-foreground shadow-lg md:w-[400px]",
           className
@@ -49,9 +52,12 @@ const NotificationPanel = React.forwardRef<HTMLDivElement, NotificationPanelProp
         <div className="flex items-center justify-between border-b px-4 py-3">
           <div className="flex items-center gap-2">
             <Bell className="h-5 w-5" />
-            <h3 className="font-semibold">Notifications</h3>
+            <h3 id="notification-panel-title" className="font-semibold">Notifications</h3>
             {unreadCount > 0 && (
-              <span className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-primary px-1.5 text-xs font-medium text-primary-foreground">
+              <span 
+                className="flex h-5 min-w-[20px] items-center justify-center rounded-full bg-primary px-1.5 text-xs font-medium text-primary-foreground"
+                aria-label={`${unreadCount} unread notifications`}
+              >
                 {unreadCount}
               </span>
             )}

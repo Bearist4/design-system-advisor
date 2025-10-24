@@ -633,3 +633,122 @@ select:focus-visible,
     border: 1px solid currentColor;
   }
 }
+
+/* ========== FEEDBACK COMPONENTS ACCESSIBILITY ========== */
+
+/* Status Indicator Accessibility */
+[role="status"] {
+  /* Ensure proper focus for close buttons */
+  button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Empty State Accessibility */
+[role="region"][aria-labelledby*="empty-state"] {
+  /* Ensure proper heading hierarchy */
+  h3 {
+    color: inherit;
+  }
+  
+  /* Improve action button accessibility */
+  [role="group"] button {
+    min-height: 44px; /* Touch target size */
+  }
+}
+
+/* Notification Panel Accessibility */
+[role="dialog"][aria-labelledby*="notification"] {
+  /* Ensure proper focus management */
+  &:focus {
+    outline: none;
+  }
+  
+  /* Improve notification item accessibility */
+  .notification-item {
+    position: relative;
+  }
+  
+  /* Better focus for notification actions */
+  button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Loading Spinner Accessibility */
+[role="status"][aria-label*="Loading"] {
+  /* Ensure spinner is visible to screen readers */
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-spin {
+      animation: none;
+    }
+  }
+}
+
+/* Progress Bar Accessibility */
+[role="progressbar"] {
+  /* Ensure progress is announced */
+  &:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Enhanced focus management for feedback components */
+.feedback-component {
+  /* Ensure all interactive elements are keyboard accessible */
+  button, a, [tabindex] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve focus visibility */
+  *:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Screen reader only content for feedback components */
+.feedback-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* High contrast mode for all feedback components */
+@media (prefers-contrast: high) {
+  /* Status indicators */
+  [role="status"] {
+    border-width: 2px;
+    border-style: solid;
+  }
+  
+  /* Notification items */
+  .notification-item {
+    border: 1px solid currentColor;
+  }
+  
+  /* Progress bars */
+  [role="progressbar"] {
+    border: 2px solid currentColor;
+  }
+  
+  /* Empty states */
+  [role="region"] {
+    border: 1px solid currentColor;
+  }
+}

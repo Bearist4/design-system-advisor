@@ -113,9 +113,11 @@ export function ThemeToggleIcon() {
   };
 
   return (
-    <button
+    <Button
       onClick={cycleTheme}
-      className="relative inline-flex items-center justify-center rounded-md p-2 text-foreground hover:bg-accent hover:text-accent-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 transition-colors"
+      variant="ghost"
+      size="icon"
+      className="relative"
       aria-label={`Current theme: ${theme}. Click to cycle themes.`}
     >
       {theme === 'system' ? (
@@ -171,6 +173,6 @@ export function ThemeToggleIcon() {
           <path d="m19.07 4.93-1.41 1.41" />
         </svg>
       )}
-    </button>
+    </Button>
   );
 }

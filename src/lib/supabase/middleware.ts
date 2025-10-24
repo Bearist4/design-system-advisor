@@ -46,7 +46,11 @@ export async function updateSession(request: NextRequest) {
     !request.nextUrl.pathname.startsWith('/login') &&
     !request.nextUrl.pathname.startsWith('/auth') &&
     !request.nextUrl.pathname.startsWith('/api/auth') &&
-    !request.nextUrl.pathname.startsWith('/onboarding')
+    !request.nextUrl.pathname.startsWith('/onboarding') &&
+    !request.nextUrl.pathname.startsWith('/button-demo') &&
+    !request.nextUrl.pathname.startsWith('/feedback-demo') &&
+    !request.nextUrl.pathname.startsWith('/sidebar-demo') &&
+    !request.nextUrl.pathname.startsWith('/responsive-showcase')
   ) {
     console.log('Middleware: No user found, redirecting to login')
     const url = request.nextUrl.clone()

@@ -93,15 +93,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           </>
         ) : (
           <>
-            {Icon && iconPosition === "left" && (
+            {iconOnly && Icon ? (
               <Icon className={cn(iconSize, "flex-shrink-0")} aria-hidden="true" />
-            )}
-            {!iconOnly && <span>{children}</span>}
-            {Icon && iconPosition === "right" && (
-              <Icon className={cn(iconSize, "flex-shrink-0")} aria-hidden="true" />
-            )}
-            {iconOnly && Icon && (
-              <Icon className={cn(iconSize, "flex-shrink-0")} aria-hidden="true" />
+            ) : (
+              <>
+                {Icon && iconPosition === "left" && (
+                  <Icon className={cn(iconSize, "flex-shrink-0")} aria-hidden="true" />
+                )}
+                <span>{children}</span>
+                {Icon && iconPosition === "right" && (
+                  <Icon className={cn(iconSize, "flex-shrink-0")} aria-hidden="true" />
+                )}
+              </>
             )}
           </>
         )}

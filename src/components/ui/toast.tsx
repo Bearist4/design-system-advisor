@@ -2,6 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { X, CheckCircle2, AlertCircle, AlertTriangle, Info } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const toastVariants = cva(
   "pointer-events-auto relative flex w-full items-center justify-between gap-3 overflow-hidden rounded-lg border p-4 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
@@ -85,13 +86,15 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
           </div>
         </div>
         {onClose && (
-          <button
+          <Button
             onClick={onClose}
-            className="rounded-md p-1 opacity-80 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-current transition-opacity"
+            icon={X}
+            iconOnly
+            size="sm"
+            variant="ghost"
+            className="opacity-80 hover:opacity-100"
             aria-label="Close toast"
-          >
-            <X className="h-4 w-4" />
-          </button>
+          />
         )}
       </div>
     )

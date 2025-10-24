@@ -1,6 +1,7 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
 import { X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 export interface ModalProps {
   isOpen: boolean
@@ -48,13 +49,15 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
           {title && (
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold">{title}</h2>
-              <button
+              <Button
                 onClick={onClose}
-                className="rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-              >
-                <X className="h-4 w-4" />
-                <span className="sr-only">Close</span>
-              </button>
+                icon={X}
+                iconOnly
+                size="sm"
+                variant="ghost"
+                className="opacity-70 hover:opacity-100"
+                aria-label="Close"
+              />
             </div>
           )}
           {children}

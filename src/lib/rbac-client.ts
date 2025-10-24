@@ -350,3 +350,4 @@ export async function logAuditEvent(
     console.error('Error logging audit event:', error);
   }
 }
+

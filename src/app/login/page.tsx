@@ -203,9 +203,18 @@ Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <div className="w-full max-w-4xl space-y-6">
-        <Card className="w-full max-w-md mx-auto">
+    <div className="min-h-screen bg-background">
+      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" aria-label="Main navigation">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-xl font-semibold">Design System Advisor</h1>
+          </div>
+        </div>
+      </nav>
+      
+      <main className="flex items-center justify-center p-4">
+        <div className="w-full max-w-4xl space-y-6">
+          <Card className="w-full max-w-md mx-auto">
         <CardHeader>
           <CardTitle>Design System Advisor</CardTitle>
           <CardDescription>
@@ -331,11 +340,12 @@ Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
         </CardContent>
         </Card>
         
-        {/* Auth Debugger - only show in development */}
-        {process.env.NODE_ENV === 'development' && (
-          <AuthDebugger />
-        )}
-      </div>
+          {/* Auth Debugger - only show in development */}
+          {process.env.NODE_ENV === 'development' && (
+            <AuthDebugger />
+          )}
+        </div>
+      </main>
     </div>
   )
 }

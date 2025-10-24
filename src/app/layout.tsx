@@ -4,6 +4,8 @@ import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import { ToastProvider } from "@/contexts/ToastContext";
 import { NotificationProvider } from "@/contexts/NotificationContext";
+import { ScreenReaderAnnouncer, SkipToContent } from "@/lib/accessibility";
+import { MainLayout } from "@/components/layout/MainLayout";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +32,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <SkipToContent />
+        <ScreenReaderAnnouncer />
         <ThemeProvider>
           <ToastProvider>
             <NotificationProvider>
-              {children}
+              <MainLayout>
+                {children}
+              </MainLayout>
             </NotificationProvider>
           </ToastProvider>
         </ThemeProvider>

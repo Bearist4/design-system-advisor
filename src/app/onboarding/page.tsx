@@ -247,8 +247,7 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto py-8">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold">Welcome to Design System Advisor</h1>
           <p className="text-muted-foreground mt-2">
@@ -277,7 +276,7 @@ export default function OnboardingPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-fluid gap-fluid-md">
               {organizations.map((org) => (
                 <Card key={org.id} className="cursor-pointer hover:shadow-md transition-shadow">
                   <CardHeader>
@@ -374,7 +373,6 @@ export default function OnboardingPage() {
             </Card>
           </div>
         )}
-      </div>
     </div>
   )
 }

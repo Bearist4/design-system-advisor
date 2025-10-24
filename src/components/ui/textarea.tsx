@@ -5,17 +5,28 @@ export interface TextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   // Additional props can be added here if needed
   variant?: 'default' | 'error'
+  label?: string
+  error?: string
+  helperText?: string
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-  ({ className, ...props }, ref) => {
+  ({ className, variant, label, error, helperText, 'aria-describedby': ariaDescribedBy, ...props }, ref) => {
+    const errorId = error ? `${props.id}-error` : undefined
+    const helperTextId = helperText ? `${props.id}-helper` : undefined
+    const describedBy = [ariaDescribedBy, errorId, helperTextId].filter(Boolean).join(' ')
+
     return (
       <textarea
         className={cn(
           "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+          variant === 'error' && "border-destructive focus-visible:ring-destructive",
+          error && "border-destructive focus-visible:ring-destructive",
           className
         )}
         ref={ref}
+        aria-invalid={error ? 'true' : undefined}
+        aria-describedby={describedBy || undefined}
         {...props}
       />
     )

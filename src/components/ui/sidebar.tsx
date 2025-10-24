@@ -9,6 +9,7 @@ import { Upload, Home, Settings, FileText, ChevronDown, ChevronRight, Menu, X, U
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { LucideIcon } from "lucide-react"
+import { useReducedMotion, announcementManager } from "@/lib/accessibility"
 
 export interface MenuItem {
   href?: string
@@ -36,6 +37,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     const [isCollapsed, setIsCollapsed] = React.useState(defaultCollapsed)
     const [expandedSections, setExpandedSections] = React.useState<Set<string>>(new Set())
     const [isMobileOpen, setIsMobileOpen] = React.useState(false)
+    const prefersReducedMotion = useReducedMotion()
 
     // Default sections if none provided
     const defaultSections: MenuSection[] = [
@@ -98,6 +100,11 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       const newState = !isCollapsed
       setIsCollapsed(newState)
       onCollapseChange?.(newState)
+      // Announce state change to screen readers
+      announcementManager.announce(
+        newState ? 'Sidebar collapsed' : 'Sidebar expanded',
+        'polite'
+      )
     }, [isCollapsed, onCollapseChange])
 
     const toggleSection = React.useCallback((itemLabel: string) => {
@@ -324,7 +331,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           ref={ref}
           className={cn(
             "hidden md:flex h-full flex-col border-r bg-background overflow-visible",
-            "transition-[width] duration-200 ease-in-out will-change-[width]",
+            prefersReducedMotion ? "" : "transition-[width] duration-200 ease-in-out will-change-[width]",
             isCollapsed ? "w-16" : "w-64",
             className
           )}
@@ -336,10 +343,12 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
         {/* Mobile Sidebar */}
         <div
           className={cn(
-            "fixed inset-y-0 left-0 z-50 flex md:hidden w-64 flex-col border-r bg-background transition-transform duration-300 ease-in-out",
+            "fixed inset-y-0 left-0 z-50 flex md:hidden w-64 flex-col border-r bg-background",
+            prefersReducedMotion ? "" : "transition-transform duration-300 ease-in-out",
             isMobileOpen ? "translate-x-0" : "-translate-x-full"
           )}
           aria-label="Mobile sidebar navigation"
+          aria-hidden={!isMobileOpen}
         >
           {sidebarContent}
         </div>

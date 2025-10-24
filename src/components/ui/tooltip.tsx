@@ -3,6 +3,7 @@
 import * as React from "react"
 import { createPortal } from "react-dom"
 import { cn } from "@/lib/utils"
+import { useReducedMotion, useId } from "@/lib/accessibility"
 
 interface TooltipProps {
   children: React.ReactElement
@@ -27,6 +28,8 @@ export function Tooltip({
   const [positionReady, setPositionReady] = React.useState(false)
   const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const triggerRef = React.useRef<HTMLElement>(null)
+  const prefersReducedMotion = useReducedMotion()
+  const tooltipId = useId('tooltip')
 
   const calculatePosition = React.useCallback(() => {
     if (!triggerRef.current) return { top: 0, left: 0 }
@@ -118,6 +121,7 @@ export function Tooltip({
     onMouseLeave?: (e: React.MouseEvent) => void;
     onFocus?: (e: React.FocusEvent) => void;
     onBlur?: (e: React.FocusEvent) => void;
+    'aria-describedby'?: string;
   }>
 
   const clonedChild = React.cloneElement(child, {
@@ -133,6 +137,7 @@ export function Tooltip({
         (existingRef as React.MutableRefObject<HTMLElement | null>).current = node
       }
     },
+    'aria-describedby': isVisible && !disabled ? tooltipId : child.props['aria-describedby'],
     onMouseEnter: (e: React.MouseEvent) => {
       handleMouseEnter()
       if (child.props && typeof child.props.onMouseEnter === 'function') {
@@ -180,6 +185,7 @@ export function Tooltip({
 
   const tooltipContent = isVisible && mounted && positionReady && (
     <div
+      id={tooltipId}
       role="tooltip"
       style={{
         position: 'fixed',
@@ -189,20 +195,21 @@ export function Tooltip({
         zIndex: 9999,
       }}
       className={cn(
-        "px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-lg",
+        "px-3 py-2 text-sm font-medium text-white bg-gray-900 dark:bg-gray-800 rounded-lg shadow-lg",
         "whitespace-nowrap pointer-events-none",
-        "animate-fade-in"
+        !prefersReducedMotion && "animate-fade-in"
       )}
     >
       {content}
       <div
         className={cn(
-          "absolute w-2 h-2 bg-gray-900 transform rotate-45",
+          "absolute w-2 h-2 bg-gray-900 dark:bg-gray-800 transform rotate-45",
           side === 'top' && "bottom-[-4px] left-1/2 -translate-x-1/2",
           side === 'right' && "left-[-4px] top-1/2 -translate-y-1/2",
           side === 'bottom' && "top-[-4px] left-1/2 -translate-x-1/2",
           side === 'left' && "right-[-4px] top-1/2 -translate-y-1/2"
         )}
+        aria-hidden="true"
       />
     </div>
   )

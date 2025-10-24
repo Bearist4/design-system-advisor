@@ -4,7 +4,7 @@ export function cn(...inputs: ClassValue[]) {
   return clsx(inputs)
 }
 
-export function categorizeTokens(filename: string, content: any): string {
+export function categorizeTokens(filename: string, content: unknown): string {
   const lowerFilename = filename.toLowerCase()
   const contentStr = JSON.stringify(content).toLowerCase()
   

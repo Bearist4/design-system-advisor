@@ -22,7 +22,7 @@ interface Organization {
 export default function OnboardingPage() {
   const [organizations, setOrganizations] = useState<Organization[]>([])
   const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
   const [showCreateForm, setShowCreateForm] = useState(false)
   const [newOrgName, setNewOrgName] = useState('')
   const [newOrgDescription, setNewOrgDescription] = useState('')
@@ -250,7 +250,7 @@ export default function OnboardingPage() {
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold">Welcome to Design System Advisor</h1>
           <p className="text-muted-foreground mt-2">
-            Let's get you set up with an organization to manage your design tokens
+            Let&apos;s get you set up with an organization to manage your design tokens
           </p>
         </div>
 
@@ -259,7 +259,7 @@ export default function OnboardingPage() {
             <Building2 className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
             <h2 className="text-2xl font-bold mb-2">No Organizations Found</h2>
             <p className="text-muted-foreground mb-6">
-              You don't have access to any organizations yet. Create your first organization to get started.
+              You don&apos;t have access to any organizations yet. Create your first organization to get started.
             </p>
             <Button onClick={() => setShowCreateForm(true)}>
               <Plus className="mr-2 h-4 w-4" />

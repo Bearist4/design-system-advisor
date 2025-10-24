@@ -106,7 +106,8 @@ export async function updateSession(request: NextRequest) {
             console.error('Middleware: Error creating user profile:', profileError);
             
             // Check if it's an RLS recursion error
-            if ((profileError as any)?.code === '42P17' || (profileError as any)?.message?.includes('infinite recursion')) {
+            const errorObj = profileError as { code?: string; message?: string }
+            if (errorObj.code === '42P17' || errorObj.message?.includes('infinite recursion')) {
               console.error('Middleware: RLS recursion error detected. Database policies need to be fixed.');
               console.error('Middleware: Please run FIX_RLS_RECURSION.sql in your Supabase SQL Editor');
             }
@@ -115,7 +116,8 @@ export async function updateSession(request: NextRequest) {
           console.error('Middleware: Error creating user profile:', profileError)
           
           // Check if it's an RLS recursion error
-          if ((profileError as any)?.code === '42P17' || (profileError as any)?.message?.includes('infinite recursion')) {
+          const errorObj = profileError as { code?: string; message?: string }
+          if (errorObj.code === '42P17' || errorObj.message?.includes('infinite recursion')) {
             console.error('Middleware: RLS recursion error detected. Database policies need to be fixed.');
             console.error('Middleware: Please run FIX_RLS_RECURSION.sql in your Supabase SQL Editor');
           }
@@ -142,9 +144,9 @@ export async function updateSession(request: NextRequest) {
       console.log('Middleware: Checking organization access for path:', pathname);
       console.log('Middleware: User context current_org:', userContext.current_org ? { id: userContext.current_org.id, name: userContext.current_org.name } : 'None');
       console.log('Middleware: User organizations:', userContext.organizations.map(org => ({ id: org.id, name: org.name })));
-      console.log('Middleware: Onboarding completed:', (userContext.user as any).onboarding_completed);
+      console.log('Middleware: Onboarding completed:', (userContext.user as { onboarding_completed?: boolean }).onboarding_completed);
 
-      if (isProtectedRoute && (!userContext.current_org || !(userContext.user as any).onboarding_completed)) {
+      if (isProtectedRoute && (!userContext.current_org || !(userContext.user as { onboarding_completed?: boolean }).onboarding_completed)) {
         // User has no organization access or hasn't completed onboarding, redirect to onboarding
         if (!pathname.startsWith('/onboarding')) {
           console.log('Middleware: No organization access or onboarding not completed, redirecting to onboarding')
@@ -161,7 +163,7 @@ export async function updateSession(request: NextRequest) {
       }
 
       // Check organization-specific access
-      const orgId = extractOrgIdFromPath(pathname);
+      const orgId = extractOrgIdFromPath();
       if (orgId && userContext.current_org?.id !== orgId) {
         // Check if user has access to this specific organization
         const hasOrgAccess = userContext.organizations.some(org => org.id === orgId);
@@ -192,7 +194,7 @@ export async function updateSession(request: NextRequest) {
 }
 
 // Helper function to extract organization ID from path
-function extractOrgIdFromPath(pathname: string): string | null {
+function extractOrgIdFromPath(): string | null {
   // Only check specific paths that should contain organization IDs
   // For now, we don't have org-specific paths, so return null
   // This can be extended later if we add paths like /dashboard/{orgId}/...

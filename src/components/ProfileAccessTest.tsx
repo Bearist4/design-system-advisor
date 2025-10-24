@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { CheckCircle, XCircle, AlertCircle, Shield, User, Building } from 'lucide-react'
+import { CheckCircle, XCircle, Shield, User, Building } from 'lucide-react'
 import { getUserContext } from '@/lib/rbac-client'
 import { UserContext } from '@/lib/types/rbac'
 
@@ -13,11 +13,11 @@ interface TestResult {
   test: string
   passed: boolean
   message: string
-  details?: any
+  details?: unknown
 }
 
 export default function ProfileAccessTest() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
   const [userContext, setUserContext] = useState<UserContext | null>(null)
   const [testResults, setTestResults] = useState<TestResult[]>([])
   const [loading, setLoading] = useState(true)

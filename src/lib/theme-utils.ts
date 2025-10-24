@@ -118,7 +118,7 @@ export function setCSSVariable(variableName: string, value: string): void {
 /**
  * Check if contrast ratio meets WCAG AA standards (4.5:1 for normal text)
  */
-export function hasGoodContrast(color1: string, color2: string): boolean {
+export function hasGoodContrast(): boolean {
   // This is a simplified check. For production, use a proper contrast checker library
   return true; // Placeholder
 }

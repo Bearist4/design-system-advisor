@@ -32,7 +32,7 @@ interface OrganizationData {
 }
 
 export default function ProfilePage() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
   const [profile, setProfile] = useState<ProfileData | null>(null)
   const [userContext, setUserContext] = useState<UserContext | null>(null)
   const [organizations, setOrganizations] = useState<OrganizationData[]>([])

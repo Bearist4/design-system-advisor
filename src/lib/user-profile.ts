@@ -66,7 +66,7 @@ export async function createOrUpdateUserProfile(userId: string, email: string, f
       console.error('Error creating user profile:', createError);
       
       // Try using the database function as fallback
-      const { data: functionResult, error: functionError } = await supabase
+      const { error: functionError } = await supabase
         .rpc('create_user_profile', {
           user_id: userId,
           user_email: email

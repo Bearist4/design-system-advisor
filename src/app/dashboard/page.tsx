@@ -19,13 +19,20 @@ interface TokenFile {
   created_at: string
   user_id: string
   file_url: string
-  token_data: any
+  token_data: Record<string, unknown>
+}
+
+interface User {
+  id: string
+  email?: string
+  user_metadata?: Record<string, unknown>
+  app_metadata?: Record<string, unknown>
 }
 
 export default function DashboardPage() {
   const [tokens, setTokens] = useState<TokenFile[]>([])
   const [loading, setLoading] = useState(true)
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<User | null>(null)
   const [userContext, setUserContext] = useState<UserContext | null>(null)
   const router = useRouter()
 
@@ -97,10 +104,10 @@ export default function DashboardPage() {
     getTokens()
   }, [router])
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    router.push('/login')
-  }
+  // const handleSignOut = async () => {
+  //   await supabase.auth.signOut()
+  //   router.push('/login')
+  // }
 
   if (loading) {
     return (
@@ -307,7 +314,7 @@ export default function DashboardPage() {
                     <TableRow key={token.id}>
                       <TableCell className="font-medium">{token.filename}</TableCell>
                       <TableCell>
-                        <Badge variant={token.category as any}>{token.category}</Badge>
+                        <Badge variant={token.category as "default" | "secondary" | "destructive" | "outline" | "foundation" | "spacing" | "brand" | "component" | "platform" | "misc"}>{token.category}</Badge>
                       </TableCell>
                       <TableCell>
                         {new Date(token.created_at).toLocaleDateString()}

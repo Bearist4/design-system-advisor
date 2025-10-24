@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Search, Filter, FileText, Calendar } from 'lucide-react'
+import { Search, FileText, Calendar } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+// import { useRouter } from 'next/navigation' // Unused for now
 
 interface TokenFile {
   id: string
@@ -18,7 +18,7 @@ interface TokenFile {
   created_at: string
   user_id: string
   file_url: string
-  token_data: any
+  token_data: Record<string, unknown>
 }
 
 const categories = ['all', 'foundation', 'spacing', 'brand', 'component', 'platform', 'misc']
@@ -29,7 +29,7 @@ export default function TokensPage() {
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
-  const router = useRouter()
+  // const router = useRouter() // Unused for now
 
   useEffect(() => {
     const getTokens = async () => {
@@ -178,7 +178,7 @@ export default function TokensPage() {
                     <TableRow key={token.id}>
                       <TableCell className="font-medium">{token.filename}</TableCell>
                       <TableCell>
-                        <Badge variant={token.category as any}>{token.category}</Badge>
+                        <Badge variant={token.category as "default" | "secondary" | "destructive" | "outline" | "foundation" | "spacing" | "brand" | "component" | "platform" | "misc"}>{token.category}</Badge>
                       </TableCell>
                       <TableCell>
                         <div className="flex items-center text-sm text-muted-foreground">

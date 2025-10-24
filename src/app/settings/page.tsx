@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { ArrowLeft, User, Mail, Calendar, Trash2, Palette } from 'lucide-react'
+import { ArrowLeft, User, Calendar, Trash2, Palette } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
@@ -15,7 +15,7 @@ import { ThemeShowcase } from '@/components/ui/theme-showcase'
 import { useTheme } from '@/contexts/ThemeContext'
 
 export default function SettingsPage() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
   const [loading, setLoading] = useState(true)
   const [isDeleting, setIsDeleting] = useState(false)
   const [showThemeShowcase, setShowThemeShowcase] = useState(false)
@@ -67,9 +67,10 @@ export default function SettingsPage() {
       if (authError) throw authError
 
       router.push('/login')
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error deleting account:', error)
-      alert('Error deleting account: ' + error.message)
+      const errorObj = error as { message?: string }
+      alert('Error deleting account: ' + (errorObj.message || 'Unknown error'))
     } finally {
       setIsDeleting(false)
     }

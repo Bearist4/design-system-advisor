@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 
 type Theme = 'light' | 'dark' | 'system';
 
@@ -26,12 +26,12 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   };
 
   // Resolve theme based on user preference
-  const resolveTheme = (themePreference: Theme): 'light' | 'dark' => {
+  const resolveTheme = useCallback((themePreference: Theme): 'light' | 'dark' => {
     if (themePreference === 'system') {
       return getSystemTheme();
     }
     return themePreference;
-  };
+  }, []);
 
   // Initialize theme from localStorage
   useEffect(() => {
@@ -44,7 +44,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       const systemTheme = getSystemTheme();
       setResolvedTheme(systemTheme);
     }
-  }, []);
+  }, [resolveTheme]);
 
   // Update theme
   const setTheme = (newTheme: Theme) => {

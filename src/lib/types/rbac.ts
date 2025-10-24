@@ -33,7 +33,7 @@ export interface Organization {
   slug: string;
   description?: string;
   owner_id: string;
-  settings: Record<string, any>;
+  settings: Record<string, unknown>;
   plan: PlanType;
   status: OrgStatus;
   created_at: string;
@@ -46,7 +46,7 @@ export interface OrgMember {
   user_id: string;
   org_id: string;
   role: OrgRole;
-  permissions: Record<string, any>;
+  permissions: Record<string, unknown>;
   status: MemberStatus;
   invited_by?: string;
   invited_at?: string;
@@ -60,7 +60,7 @@ export interface Token {
   org_id: string;
   category: string;
   name: string;
-  value: Record<string, any>;
+  value: Record<string, unknown>;
   description?: string;
   tags: string[];
   is_public: boolean;
@@ -81,7 +81,7 @@ export interface AuditLog {
   action: string;
   resource_type: string;
   resource_id?: string;
-  details: Record<string, any>;
+  details: Record<string, unknown>;
   ip_address?: string;
   user_agent?: string;
   created_at: string;
@@ -93,7 +93,7 @@ export interface RolePermission {
   role: UserRole;
   resource: ResourceType;
   action: ActionType;
-  conditions: Record<string, any>;
+  conditions: Record<string, unknown>;
   created_at: string;
 }
 

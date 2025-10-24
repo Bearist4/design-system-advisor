@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 export default function AuthDebugger() {
-  const [authState, setAuthState] = useState<any>(null)
+  const [authState, setAuthState] = useState<{ user: unknown; session: unknown } | null>(null)
   const [loading, setLoading] = useState(false)
 
   const checkAuthState = async () => {

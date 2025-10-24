@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { ScreenReaderAnnouncer, SkipToContent } from "@/lib/accessibility";
 import { MainLayout } from "@/components/layout/MainLayout";
 
 const geistSans = Geist({
@@ -29,6 +30,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <SkipToContent />
+        <ScreenReaderAnnouncer />
         <ThemeProvider>
           <MainLayout>
             {children}

@@ -104,10 +104,10 @@ export default function DashboardPage() {
     getTokens()
   }, [router])
 
-  // const handleSignOut = async () => {
-  //   await supabase.auth.signOut()
-  //   router.push('/login')
-  // }
+  const handleSignOut = async () => {
+    await supabase.auth.signOut()
+    router.push('/login')
+  }
 
   if (loading) {
     return (

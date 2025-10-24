@@ -168,6 +168,8 @@ export default function OnboardingPage() {
   }
 
   const handleSelectOrganization = async (orgId: string) => {
+    if (!user) return
+    
     try {
       setSelecting(orgId)
       console.log('Selecting organization:', orgId)

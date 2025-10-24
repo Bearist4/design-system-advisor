@@ -15,7 +15,13 @@ import { ThemeShowcase } from '@/components/ui/theme-showcase'
 import { useTheme } from '@/contexts/ThemeContext'
 
 export default function SettingsPage() {
-  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
+  const [user, setUser] = useState<{ 
+    id: string; 
+    email?: string; 
+    user_metadata?: Record<string, unknown>;
+    app_metadata?: Record<string, unknown>;
+    created_at?: string;
+  } | null>(null)
   const [loading, setLoading] = useState(true)
   const [isDeleting, setIsDeleting] = useState(false)
   const [showThemeShowcase, setShowThemeShowcase] = useState(false)
@@ -48,6 +54,8 @@ export default function SettingsPage() {
   }
 
   const handleDeleteAccount = async () => {
+    if (!user) return
+    
     if (!confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       return
     }
@@ -183,23 +191,23 @@ export default function SettingsPage() {
                 />
               </div>
               
-              {user.user_metadata?.full_name && (
+              {user.user_metadata?.full_name && typeof user.user_metadata.full_name === 'string' ? (
                 <div>
                   <Label htmlFor="name">Full Name</Label>
                   <Input
                     id="name"
-                    value={user.user_metadata.full_name}
+                    value={String(user.user_metadata.full_name)}
                     disabled
                     className="mt-1"
                   />
                 </div>
-              )}
+              ) : null}
 
               <div>
                 <Label htmlFor="provider">Authentication Provider</Label>
                 <div className="mt-1">
                   <Badge variant="secondary">
-                    {user.app_metadata?.provider || 'email'}
+                    {String(user.app_metadata?.provider || 'email')}
                   </Badge>
                 </div>
               </div>
@@ -208,7 +216,7 @@ export default function SettingsPage() {
                 <Label htmlFor="created">Account Created</Label>
                 <div className="mt-1 flex items-center text-sm text-muted-foreground">
                   <Calendar className="mr-1 h-3 w-3" />
-                  {new Date(user.created_at).toLocaleDateString()}
+                  {user.created_at ? new Date(user.created_at).toLocaleDateString() : 'Unknown'}
                 </div>
               </div>
             </CardContent>

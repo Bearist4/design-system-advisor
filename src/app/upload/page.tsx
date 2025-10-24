@@ -470,7 +470,7 @@ export default function UploadPage() {
                   {(previewFile.file.size / 1024).toFixed(1)} KB
                 </span>
                 <span className="text-sm text-muted-foreground">
-                  • {Object.keys(previewFile.content).length} top-level keys
+                  • {typeof previewFile.content === 'object' && previewFile.content !== null ? Object.keys(previewFile.content as Record<string, unknown>).length : 0} top-level keys
                 </span>
               </div>
               
@@ -479,14 +479,14 @@ export default function UploadPage() {
                 <div className="bg-muted p-3 rounded-lg">
                   <div className="text-sm text-muted-foreground mb-2">Top-level keys:</div>
                   <div className="flex flex-wrap gap-2">
-                    {Object.keys(previewFile.content).slice(0, 10).map((key, index) => (
+                    {typeof previewFile.content === 'object' && previewFile.content !== null ? Object.keys(previewFile.content as Record<string, unknown>).slice(0, 10).map((key, index) => (
                       <Badge key={index} variant="secondary" className="text-xs">
                         {key}
                       </Badge>
-                    ))}
-                    {Object.keys(previewFile.content).length > 10 && (
+                    )) : []}
+                    {typeof previewFile.content === 'object' && previewFile.content !== null && Object.keys(previewFile.content as Record<string, unknown>).length > 10 && (
                       <Badge variant="outline" className="text-xs">
-                        +{Object.keys(previewFile.content).length - 10} more
+                        +{Object.keys(previewFile.content as Record<string, unknown>).length - 10} more
                       </Badge>
                     )}
                   </div>

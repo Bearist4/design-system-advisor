@@ -10,6 +10,7 @@ import {
   Profile, 
   Organization, 
   UserContext,
+  RBACError,
   PermissionDeniedError,
   OrganizationNotFoundError,
   InsufficientRoleError

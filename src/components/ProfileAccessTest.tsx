@@ -237,7 +237,7 @@ export default function ProfileAccessTest() {
 
   const passedTests = testResults.filter(r => r.passed).length
   const totalTests = testResults.length
-  const testSuccessRate = totalTests > 0 ? (passedTests / totalTests * 100).toFixed(1) : 0
+  const testSuccessRate = totalTests > 0 ? Number((passedTests / totalTests * 100).toFixed(1)) : 0
 
   return (
     <div className="min-h-screen bg-background">
@@ -351,13 +351,13 @@ export default function ProfileAccessTest() {
                         {result.passed ? 'PASS' : 'FAIL'}
                       </Badge>
                     </div>
-                    {result.details && (
+                    {result.details && typeof result.details === 'object' && result.details !== null ? (
                       <div className="mt-3 p-3 bg-muted rounded-lg">
                         <pre className="text-xs overflow-auto">
-                          {JSON.stringify(result.details, null, 2)}
+                          {JSON.stringify(result.details as Record<string, unknown>, null, 2)}
                         </pre>
                       </div>
-                    )}
+                    ) : null}
                   </CardContent>
                 </Card>
               ))}

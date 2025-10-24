@@ -61,8 +61,8 @@
   
   /* ========== TYPOGRAPHY TOKENS ========== */
   /* Font Families */
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: 'Noto Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'Noto Mono', ui-monospace, monospace;
   
   /* Font Sizes */
   --text-xs: 0.75rem;      /* 12px */

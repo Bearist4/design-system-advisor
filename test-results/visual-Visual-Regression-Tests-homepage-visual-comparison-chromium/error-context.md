@@ -1,0 +1,63 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - navigation "Main navigation" [ref=e3]:
+      - heading "Design System Advisor" [level=1] [ref=e6]
+    - main [ref=e7]:
+      - generic [ref=e8]:
+        - generic [ref=e9]:
+          - generic [ref=e10]:
+            - heading "Design System Advisor" [level=3] [ref=e11]
+            - paragraph [ref=e12]: Sign in to your account
+          - generic [ref=e13]:
+            - generic [ref=e14]:
+              - generic [ref=e15]:
+                - text: Email
+                - textbox "Email" [ref=e16]:
+                  - /placeholder: Enter your email
+              - generic [ref=e17]:
+                - text: Password
+                - textbox "Password" [ref=e18]:
+                  - /placeholder: Enter your password
+              - button "Sign In" [ref=e19] [cursor=pointer]
+            - generic [ref=e24]: Or continue with
+            - button "GitHub" [ref=e25] [cursor=pointer]:
+              - img [ref=e26]
+              - text: GitHub
+            - button "Don't have an account? Sign up" [ref=e30] [cursor=pointer]
+            - generic [ref=e31]:
+              - heading "Debug Information:" [level=4] [ref=e32]
+              - generic [ref=e33]: "Supabase URL: ✅ Configured Supabase Key: ✅ Configured"
+              - generic [ref=e34]:
+                - button "Test Dashboard Access" [ref=e35] [cursor=pointer]
+                - button "Check Auth Status" [ref=e36] [cursor=pointer]
+                - button "Environment Check" [ref=e37] [cursor=pointer]
+        - generic [ref=e38]:
+          - heading "Authentication Debugger" [level=3] [ref=e40]
+          - generic [ref=e41]:
+            - generic [ref=e42]:
+              - button "Check Auth State" [ref=e43] [cursor=pointer]
+              - button "Sign Out" [ref=e44] [cursor=pointer]
+              - button "Test Sign In" [ref=e45] [cursor=pointer]
+              - button "Test Profile Creation" [ref=e46] [cursor=pointer]
+            - generic [ref=e47]:
+              - generic [ref=e48]:
+                - heading "Current State:" [level=4] [ref=e49]
+                - generic [ref=e50]: "{ \"user\": null, \"session\": null, \"userError\": { \"__isAuthError\": true, \"name\": \"AuthSessionMissingError\", \"status\": 400 }, \"sessionError\": null, \"timestamp\": \"2025-10-24T12:15:45.746Z\" }"
+              - generic [ref=e51]:
+                - heading "Environment Variables:" [level=4] [ref=e52]
+                - generic [ref=e53]:
+                  - generic [ref=e54]: "NEXT_PUBLIC_SUPABASE_URL: ✅ Set"
+                  - generic [ref=e55]: "NEXT_PUBLIC_SUPABASE_ANON_KEY: ✅ Set"
+              - generic [ref=e56]:
+                - heading "Browser Info:" [level=4] [ref=e57]
+                - generic [ref=e58]:
+                  - generic [ref=e59]: "URL: http://localhost:3000/login"
+                  - generic [ref=e60]: "Cookies:"
+                  - generic [ref=e61]: "User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Safari/537.36"
+  - button "Open Next.js Dev Tools" [ref=e67] [cursor=pointer]:
+    - img [ref=e68]
+  - alert [ref=e71]
+```

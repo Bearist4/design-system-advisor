@@ -11,7 +11,8 @@
     "test:ui": "playwright test --ui --config=playwright.config.ui.ts",
     "test:debug": "playwright test --debug",
     "test:report": "playwright show-report",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "depcheck": "npx depcheck"
   },
   "dependencies": {
     "@supabase/ssr": "^0.7.0",

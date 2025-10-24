@@ -1,0 +1,20 @@
+{
+  "ignores": [
+    "@types/*",
+    "eslint*",
+    "prettier*",
+    "playwright*",
+    "typescript",
+    "autoprefixer",
+    "postcss",
+    "tailwindcss",
+    "tailwindcss-animate"
+  ],
+  "skipMissing": false,
+  "ignoreDirs": [
+    "node_modules",
+    ".next",
+    "dist",
+    "build"
+  ]
+}

@@ -2,6 +2,7 @@ import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 import { CheckCircle2, AlertCircle, AlertTriangle, Info, X } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 const statusIndicatorVariants = cva(
   "inline-flex items-center gap-2 rounded-md px-3 py-1.5 text-sm font-medium transition-colors",
@@ -55,13 +56,15 @@ const StatusIndicator = React.forwardRef<HTMLDivElement, StatusIndicatorProps>(
         {showIcon && <Icon className="h-4 w-4 flex-shrink-0" />}
         <span className="flex-1">{children}</span>
         {onClose && (
-          <button
+          <Button
             onClick={onClose}
-            className="ml-1 rounded-sm opacity-80 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-current transition-opacity"
+            icon={X}
+            iconOnly
+            size="xs"
+            variant="ghost"
+            className="ml-1 opacity-80 hover:opacity-100"
             aria-label="Close status indicator"
-          >
-            <X className="h-3 w-3" />
-          </button>
+          />
         )}
       </div>
     )

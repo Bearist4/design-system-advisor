@@ -340,17 +340,15 @@ export default function UploadPage() {
                               <div className="text-sm font-medium text-gray-700">Choose a category:</div>
                               <div className="flex flex-wrap gap-2">
                                 {CATEGORY_OPTIONS.map(option => (
-                                  <button
+                                  <Button
                                     key={option.value}
                                     onClick={() => updateFileCategory(index, option.value)}
-                                    className={`px-3 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                                      uploadedFile.category === option.value
-                                        ? 'bg-primary text-primary-foreground shadow-md'
-                                        : 'bg-white text-gray-700 hover:bg-gray-100 hover:shadow-sm border border-gray-200'
-                                    }`}
+                                    variant={uploadedFile.category === option.value ? "default" : "outline"}
+                                    size="sm"
+                                    className="rounded-full"
                                   >
                                     {option.label}
-                                  </button>
+                                  </Button>
                                 ))}
                               </div>
                               <div className="flex items-center justify-between">
@@ -370,8 +368,10 @@ export default function UploadPage() {
                           ) : (
                             <div className="flex items-center space-x-2">
                               <div className="flex items-center space-x-1">
-                                <button
+                                <Button
                                   onClick={() => startEditingCategory(index)}
+                                  variant="ghost"
+                                  size="sm"
                                   className="group"
                                 >
                                   <Badge 
@@ -380,7 +380,7 @@ export default function UploadPage() {
                                   >
                                     {CATEGORY_OPTIONS.find(opt => opt.value === uploadedFile.category)?.label || uploadedFile.category}
                                   </Badge>
-                                </button>
+                                </Button>
                                 {uploadedFile.categoryManuallySet && (
                                   <span className="text-xs text-blue-600 font-medium">(edited)</span>
                                 )}

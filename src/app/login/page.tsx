@@ -274,13 +274,14 @@ Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
           </Button>
 
           <div className="text-center">
-            <button
+            <Button
               type="button"
+              variant="link"
               className="text-sm text-muted-foreground hover:text-foreground"
               onClick={() => setIsSignUp(!isSignUp)}
             >
               {isSignUp ? 'Already have an account? Sign in' : "Don't have an account? Sign up"}
-            </button>
+            </Button>
           </div>
 
           {/* Debug Information */}

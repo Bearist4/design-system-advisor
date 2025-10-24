@@ -60,10 +60,11 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
                   <Button 
                     variant="ghost" 
                     size="sm" 
+                    icon={LogOut}
+                    iconPosition="left"
                     onClick={onSignOut}
                     className="text-xs sm:text-sm"
                   >
-                    <LogOut className="h-3.5 w-3.5 sm:h-4 sm:w-4 sm:mr-2" />
                     <span className="hidden sm:inline">Sign Out</span>
                   </Button>
                 </>

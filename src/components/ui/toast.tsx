@@ -9,10 +9,10 @@ const toastVariants = cva(
     variants: {
       variant: {
         default: "border bg-background text-foreground",
-        success: "border-success/50 bg-success/10 text-success-foreground",
-        error: "border-error/50 bg-error/10 text-error-foreground",
-        warning: "border-warning/50 bg-warning/10 text-warning-foreground",
-        info: "border-info/50 bg-info/10 text-info-foreground",
+        success: "border-success bg-success text-success-foreground",
+        error: "border-error bg-error text-error-foreground", 
+        warning: "border-warning bg-warning text-warning-foreground",
+        info: "border-info bg-info text-info-foreground",
       },
     },
     defaultVariants: {
@@ -72,7 +72,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
               </div>
             )}
             {description && (
-              <div className="text-sm opacity-90">
+              <div className="text-sm opacity-95">
                 {description}
               </div>
             )}
@@ -87,7 +87,7 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
         {onClose && (
           <button
             onClick={onClose}
-            className="rounded-md p-1 opacity-70 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 transition-opacity"
+            className="rounded-md p-1 opacity-80 hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-current transition-opacity"
             aria-label="Close toast"
           >
             <X className="h-4 w-4" />

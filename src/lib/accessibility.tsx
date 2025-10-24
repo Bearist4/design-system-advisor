@@ -1,3 +1,5 @@
+"use client"
+
 /**
  * Accessibility Utilities
  * Comprehensive utilities for managing accessibility features across components

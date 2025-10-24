@@ -17,7 +17,6 @@ export function Tooltip({
   children, 
   content, 
   side = 'right', 
-  align = 'center',
   delayDuration = 200,
   disabled = false 
 }: TooltipProps) {
@@ -113,7 +112,7 @@ export function Tooltip({
     }
   }, [])
 
-  const child = React.Children.only(children) as React.ReactElement<any>
+  const child = React.Children.only(children) as React.ReactElement<unknown>
 
   const clonedChild = React.cloneElement(child, {
     ref: (node: HTMLElement | null) => {
@@ -121,7 +120,7 @@ export function Tooltip({
         triggerRef.current = node
       }
       // Preserve any existing ref
-      const existingRef = (child as any).ref
+      const existingRef = (child as { ref?: unknown }).ref
       if (typeof existingRef === 'function') {
         existingRef(node)
       } else if (existingRef) {

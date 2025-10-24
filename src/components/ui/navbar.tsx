@@ -21,56 +21,54 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
       <nav
         ref={ref}
         className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
-        role="navigation"
-        aria-label="Main navigation"
       >
-        <div className="container mx-auto px-4">
-          <div className="flex h-16 items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-xl font-bold">Design System Advisor</h1>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex h-14 sm:h-16 md:h-16 items-center justify-between gap-2 sm:gap-4">
+            {/* Logo/Brand - Responsive Text */}
+            <div className="flex items-center min-w-0 flex-shrink">
+              <h1 className="text-base sm:text-lg md:text-xl font-bold truncate">
+                <span className="hidden sm:inline">Design System Advisor</span>
+                <span className="sm:hidden">DS Advisor</span>
+              </h1>
             </div>
             
-            <div className="flex items-center space-x-4" role="group" aria-label="User menu">
+            {/* Actions - Responsive Layout */}
+            <div className="flex items-center gap-fluid-sm flex-shrink-0">
               <ThemeToggleIcon />
               {user ? (
                 <>
-                  <div 
-                    className="flex items-center space-x-2"
-                    role="status"
-                    aria-label={`Logged in as ${user.user_metadata?.full_name || user.email}`}
-                  >
+                  {/* User Info - Hidden on small screens */}
+                  <div className="hidden md:flex items-center gap-2">
                     {user.user_metadata?.avatar_url ? (
                       <Image
                         src={user.user_metadata.avatar_url}
-                        alt={`${user.user_metadata?.full_name || user.email}'s avatar`}
+                        alt="Avatar"
                         width={32}
                         height={32}
-                        className="h-8 w-8 rounded-full"
+                        className="h-7 w-7 sm:h-8 sm:w-8 rounded-full"
                       />
                     ) : (
-                      <div 
-                        className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center"
-                        aria-hidden="true"
-                      >
-                        <User className="h-4 w-4" />
+                      <div className="h-7 w-7 sm:h-8 sm:w-8 rounded-full bg-primary/10 flex items-center justify-center">
+                        <User className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
                       </div>
                     )}
-                    <span className="text-sm font-medium">
+                    <span className="text-xs sm:text-sm font-medium truncate max-w-[120px] lg:max-w-[200px]">
                       {user.user_metadata?.full_name || user.email}
                     </span>
                   </div>
+                  {/* Sign Out Button - Responsive */}
                   <Button 
                     variant="ghost" 
                     size="sm" 
                     onClick={onSignOut}
-                    aria-label="Sign out"
+                    className="text-xs sm:text-sm"
                   >
-                    <LogOut className="h-4 w-4 mr-2" aria-hidden="true" />
-                    Sign Out
+                    <LogOut className="h-3.5 w-3.5 sm:h-4 sm:w-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Sign Out</span>
                   </Button>
                 </>
               ) : (
-                <Button variant="default" size="sm" aria-label="Sign in to your account">
+                <Button variant="default" size="sm" className="text-xs sm:text-sm">
                   Sign In
                 </Button>
               )}

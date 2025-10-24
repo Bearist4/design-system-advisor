@@ -136,62 +136,7 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" aria-label="Main navigation">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-xl font-semibold">Design System Advisor</h1>
-            </div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center gap-3">
-              {userContext && (
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                  <User className="h-4 w-4" />
-                  <span>{userContext.user.full_name || userContext.user.email}</span>
-                  <Badge variant="outline" className="text-xs">
-                    {userContext.user.role === 'platform_admin' ? 'Platform Admin' :
-                     userContext.user.role === 'org_owner' ? 'Org Owner' :
-                     userContext.user.role === 'org_editor' ? 'Org Editor' :
-                     'Org Viewer'}
-                  </Badge>
-                </div>
-              )}
-              <Link href="/settings">
-                <Button variant="outline" size="sm">
-                  <Settings className="h-4 w-4 mr-2" />
-                  Theme Settings
-                </Button>
-              </Link>
-              <Link href="/profile">
-                <Button variant="outline" size="sm">
-                  <User className="h-4 w-4 mr-2" />
-                  Profile
-                </Button>
-              </Link>
-              <Link href="/test-profile">
-                <Button variant="outline" size="sm">
-                  <Shield className="h-4 w-4 mr-2" />
-                  Test RBAC
-                </Button>
-              </Link>
-              <Button variant="outline" size="sm" onClick={handleSignOut}>
-                Sign Out
-              </Button>
-            </div>
-            
-            {/* Mobile Navigation Menu */}
-            <div className="md:hidden" aria-label="Mobile navigation menu">
-              <Button variant="outline" size="sm" aria-label="Open mobile menu">
-                <User className="h-4 w-4" />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </nav>
-      
-      <main className="container mx-auto px-4 py-8">
+    <div className="container mx-auto py-8">
         <div className="mb-8">
           <div>
             <h2 className="text-3xl font-bold">Dashboard</h2>
@@ -201,7 +146,7 @@ export default function DashboardPage() {
 
         {/* Profile & Organization Context */}
         {userContext && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+          <div className="grid grid-cols-fluid gap-fluid-md mb-8">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-sm font-medium">Current Organization</CardTitle>
@@ -250,7 +195,7 @@ export default function DashboardPage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <div className="grid grid-cols-fluid gap-fluid-md mb-8">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Tokens</CardTitle>
@@ -351,7 +296,6 @@ export default function DashboardPage() {
             )}
           </CardContent>
         </Card>
-      </main>
     </div>
   )
 }

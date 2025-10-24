@@ -110,8 +110,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto py-8">
         <div className="mb-6">
           <Link href="/dashboard">
             <Button variant="outline" className="mb-4">
@@ -124,7 +123,7 @@ export default function SettingsPage() {
           <p className="text-muted-foreground">Manage your account and preferences</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-fluid-lg">
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
@@ -292,7 +291,6 @@ export default function SettingsPage() {
             </div>
           </CardContent>
         </Card>
-      </div>
     </div>
   )
 }

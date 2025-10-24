@@ -211,8 +211,7 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto py-8">
         {/* Header */}
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
@@ -227,7 +226,7 @@ export default function ProfilePage() {
           <p className="text-muted-foreground">Manage your account and organization access</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-fluid-lg">
           {/* Profile Information */}
           <div className="lg:col-span-2">
             <Card>
@@ -456,7 +455,6 @@ export default function ProfilePage() {
             </Card>
           </div>
         </div>
-      </div>
     </div>
   )
 }

@@ -280,9 +280,9 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           </Button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto overflow-x-visible p-3 space-y-6" role="navigation" aria-label="Main navigation">
+        <nav className="flex-1 overflow-y-auto overflow-x-visible p-3 space-y-fluid-md" role="navigation" aria-label="Main navigation">
           {sections.map((section, index) => (
-            <div key={section.title || index} className="space-y-2">
+            <div key={section.title || index} className="space-y-fluid-sm">
               {section.title && !isCollapsed && (
                 <h3 className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
                   {section.title}

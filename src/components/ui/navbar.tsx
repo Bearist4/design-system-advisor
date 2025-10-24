@@ -33,7 +33,7 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
             </div>
             
             {/* Actions - Responsive Layout */}
-            <div className="flex items-center gap-1.5 sm:gap-3 md:gap-4 flex-shrink-0">
+            <div className="flex items-center gap-fluid-sm flex-shrink-0">
               <ThemeToggleIcon />
               {user ? (
                 <>

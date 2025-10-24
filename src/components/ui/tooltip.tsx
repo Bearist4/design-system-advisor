@@ -189,7 +189,7 @@ export function Tooltip({
         zIndex: 9999,
       }}
       className={cn(
-        "px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-lg",
+        "px-3 py-2 text-xs sm:text-sm font-medium text-white bg-gray-900 rounded-lg shadow-lg",
         "whitespace-nowrap pointer-events-none",
         "animate-fade-in"
       )}

@@ -1,7 +1,8 @@
 import * as React from "react"
-import { cn } from "@/lib/utils"
+import Image from "next/image"
 import { Button } from "./button"
 import { LogOut, User } from "lucide-react"
+import { ThemeToggleIcon } from "./theme-toggle"
 
 export interface NavbarProps {
   user?: {
@@ -28,13 +29,16 @@ const Navbar = React.forwardRef<HTMLElement, NavbarProps>(
             </div>
             
             <div className="flex items-center space-x-4">
+              <ThemeToggleIcon />
               {user ? (
                 <>
                   <div className="flex items-center space-x-2">
                     {user.user_metadata?.avatar_url ? (
-                      <img
+                      <Image
                         src={user.user_metadata.avatar_url}
                         alt="Avatar"
+                        width={32}
+                        height={32}
                         className="h-8 w-8 rounded-full"
                       />
                     ) : (

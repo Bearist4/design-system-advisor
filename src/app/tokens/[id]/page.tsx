@@ -5,7 +5,7 @@ import { supabase } from '@/lib/supabase'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { ArrowLeft, Calendar, User, FileText } from 'lucide-react'
+import { ArrowLeft, Calendar, FileText } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
@@ -16,7 +16,7 @@ interface TokenFile {
   created_at: string
   user_id: string
   file_url: string
-  token_data: any
+  token_data: Record<string, unknown>
 }
 
 export default function TokenDetailPage({ params }: { params: Promise<{ id: string }> }) {
@@ -74,11 +74,11 @@ export default function TokenDetailPage({ params }: { params: Promise<{ id: stri
     )
   }
 
-  const renderTokenData = (data: any, depth = 0) => {
+  const renderTokenData = (data: unknown, depth = 0) => {
     if (typeof data === 'object' && data !== null) {
       return (
         <div className={`ml-${depth * 4}`}>
-          {Object.entries(data).map(([key, value]) => (
+          {Object.entries(data as Record<string, unknown>).map(([key, value]) => (
             <div key={key} className="mb-2">
               <div className="flex items-center space-x-2">
                 <span className="font-medium text-primary">{key}:</span>
@@ -119,7 +119,7 @@ export default function TokenDetailPage({ params }: { params: Promise<{ id: stri
               <h1 className="text-3xl font-bold">{token.filename}</h1>
               <p className="text-muted-foreground">Design token file details</p>
             </div>
-            <Badge variant={token.category as any} className="text-lg px-3 py-1">
+            <Badge variant={token.category as "default" | "secondary" | "destructive" | "outline" | "foundation" | "spacing" | "brand" | "component" | "platform" | "misc"} className="text-lg px-3 py-1">
               {token.category}
             </Badge>
           </div>
@@ -142,7 +142,7 @@ export default function TokenDetailPage({ params }: { params: Promise<{ id: stri
                 <div>
                   <label className="text-sm font-medium text-muted-foreground">Category</label>
                   <div className="mt-1">
-                    <Badge variant={token.category as any}>{token.category}</Badge>
+                    <Badge variant={token.category as "default" | "secondary" | "destructive" | "outline" | "foundation" | "spacing" | "brand" | "component" | "platform" | "misc"}>{token.category}</Badge>
                   </div>
                 </div>
                 <div>

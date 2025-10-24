@@ -17,7 +17,6 @@ export function Tooltip({
   children, 
   content, 
   side = 'right', 
-  align = 'center',
   delayDuration = 200,
   disabled = false 
 }: TooltipProps) {
@@ -26,7 +25,7 @@ export function Tooltip({
   const [position, setPosition] = React.useState({ top: 0, left: 0 })
   const [mounted, setMounted] = React.useState(false)
   const [positionReady, setPositionReady] = React.useState(false)
-  const timeoutRef = React.useRef<NodeJS.Timeout>()
+  const timeoutRef = React.useRef<ReturnType<typeof setTimeout> | undefined>(undefined)
   const triggerRef = React.useRef<HTMLElement>(null)
 
   const calculatePosition = React.useCallback(() => {
@@ -113,7 +112,13 @@ export function Tooltip({
     }
   }, [])
 
-  const child = React.Children.only(children) as React.ReactElement<any>
+  const child = React.Children.only(children) as React.ReactElement<{
+    ref?: React.Ref<HTMLElement>;
+    onMouseEnter?: (e: React.MouseEvent) => void;
+    onMouseLeave?: (e: React.MouseEvent) => void;
+    onFocus?: (e: React.FocusEvent) => void;
+    onBlur?: (e: React.FocusEvent) => void;
+  }>
 
   const clonedChild = React.cloneElement(child, {
     ref: (node: HTMLElement | null) => {
@@ -121,11 +126,11 @@ export function Tooltip({
         triggerRef.current = node
       }
       // Preserve any existing ref
-      const existingRef = (child as any).ref
+      const existingRef = child.props.ref
       if (typeof existingRef === 'function') {
         existingRef(node)
-      } else if (existingRef) {
-        existingRef.current = node
+      } else if (existingRef && 'current' in existingRef) {
+        (existingRef as React.MutableRefObject<HTMLElement | null>).current = node
       }
     },
     onMouseEnter: (e: React.MouseEvent) => {

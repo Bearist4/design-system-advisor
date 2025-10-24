@@ -128,25 +128,27 @@ Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
           throw new Error('Authentication failed - no user session found')
         }
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Authentication error:', error)
+      
+      const errorObj = error as { message?: string; status?: number; statusText?: string; code?: string }
       console.error('Error details:', {
-        message: error.message,
-        status: error.status,
-        statusText: error.statusText,
-        code: error.code
+        message: errorObj.message,
+        status: errorObj.status,
+        statusText: errorObj.statusText,
+        code: errorObj.code
       })
       
       // More detailed error messages
       let errorMessage = 'Authentication failed'
-      if (error.message.includes('Invalid login credentials')) {
+      if (errorObj.message?.includes('Invalid login credentials')) {
         errorMessage = 'Invalid email or password. Please check your credentials.'
-      } else if (error.message.includes('Email not confirmed')) {
+      } else if (errorObj.message?.includes('Email not confirmed')) {
         errorMessage = 'Please check your email and click the confirmation link before signing in.'
-      } else if (error.message.includes('Too many requests')) {
+      } else if (errorObj.message?.includes('Too many requests')) {
         errorMessage = 'Too many login attempts. Please wait a moment and try again.'
       } else {
-        errorMessage = `Authentication failed: ${error.message}`
+        errorMessage = `Authentication failed: ${errorObj.message || 'Unknown error'}`
       }
       
       alert(errorMessage)
@@ -180,20 +182,22 @@ Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
       }
       
       console.log('GitHub OAuth initiated:', data)
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('GitHub OAuth error:', error)
+      
+      const errorObj = error as { message?: string; status?: number; statusText?: string; code?: string }
       console.error('Error details:', {
-        message: error.message,
-        status: error.status,
-        statusText: error.statusText,
-        code: error.code
+        message: errorObj.message,
+        status: errorObj.status,
+        statusText: errorObj.statusText,
+        code: errorObj.code
       })
       
       let errorMessage = 'GitHub authentication failed'
-      if (error.message.includes('OAuth provider not enabled')) {
+      if (errorObj.message?.includes('OAuth provider not enabled')) {
         errorMessage = 'GitHub authentication is not enabled. Please contact your administrator.'
       } else {
-        errorMessage = `GitHub authentication failed: ${error.message}`
+        errorMessage = `GitHub authentication failed: ${errorObj.message || 'Unknown error'}`
       }
       
       alert(errorMessage)

@@ -134,7 +134,7 @@ export default function SidebarDemoPage() {
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">2</span>
-                  <p>Click on "Profile" in the User section to expand and see nested items</p>
+                  <p>Click on &quot;Profile&quot; in the User section to expand and see nested items</p>
                 </div>
                 <div className="flex items-start space-x-2">
                   <span className="font-mono bg-muted px-2 py-1 rounded">3</span>
@@ -169,7 +169,7 @@ export default function SidebarDemoPage() {
               <ul className="space-y-2 text-sm">
                 <li className="flex items-start space-x-2">
                   <span className="text-primary">•</span>
-                  <span><strong>Smooth animations:</strong> Uses Tailwind's animate-accordion-down for expand/collapse transitions</span>
+                  <span><strong>Smooth animations:</strong> Uses Tailwind&apos;s animate-accordion-down for expand/collapse transitions</span>
                 </li>
                 <li className="flex items-start space-x-2">
                   <span className="text-primary">•</span>

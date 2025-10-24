@@ -7,15 +7,26 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { ArrowLeft, User, Mail, Calendar, Trash2 } from 'lucide-react'
+import { ArrowLeft, User, Calendar, Trash2, Palette } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
+import { ThemeToggle } from '@/components/ui/theme-toggle'
+import { ThemeShowcase } from '@/components/ui/theme-showcase'
+import { useTheme } from '@/contexts/ThemeContext'
 
 export default function SettingsPage() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ 
+    id: string; 
+    email?: string; 
+    user_metadata?: Record<string, unknown>;
+    app_metadata?: Record<string, unknown>;
+    created_at?: string;
+  } | null>(null)
   const [loading, setLoading] = useState(true)
   const [isDeleting, setIsDeleting] = useState(false)
+  const [showThemeShowcase, setShowThemeShowcase] = useState(false)
   const router = useRouter()
+  const { theme, resolvedTheme } = useTheme()
 
   useEffect(() => {
     const getUser = async () => {
@@ -43,6 +54,8 @@ export default function SettingsPage() {
   }
 
   const handleDeleteAccount = async () => {
+    if (!user) return
+    
     if (!confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
       return
     }
@@ -62,9 +75,10 @@ export default function SettingsPage() {
       if (authError) throw authError
 
       router.push('/login')
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error deleting account:', error)
-      alert('Error deleting account: ' + error.message)
+      const errorObj = error as { message?: string }
+      alert('Error deleting account: ' + (errorObj.message || 'Unknown error'))
     } finally {
       setIsDeleting(false)
     }
@@ -114,6 +128,51 @@ export default function SettingsPage() {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center">
+                <Palette className="mr-2 h-5 w-5" />
+                Theme Preferences
+              </CardTitle>
+              <CardDescription>
+                Customize the appearance of your interface
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <Label htmlFor="theme">Theme Mode</Label>
+                <div className="mt-2 flex items-center gap-4">
+                  <ThemeToggle />
+                  <div className="text-sm text-muted-foreground">
+                    Current: <span className="font-medium capitalize">{theme}</span>
+                    {theme === 'system' && (
+                      <span className="ml-1">
+                        (using {resolvedTheme})
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  Choose between light, dark, or system preference
+                </p>
+              </div>
+
+              <div className="border-t pt-4">
+                <Button 
+                  variant="outline" 
+                  onClick={() => setShowThemeShowcase(!showThemeShowcase)}
+                  className="w-full"
+                >
+                  <Palette className="mr-2 h-4 w-4" />
+                  {showThemeShowcase ? 'Hide' : 'View'} Theme Showcase
+                </Button>
+                <p className="text-xs text-muted-foreground mt-1">
+                  Explore the complete design system tokens
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
                 <User className="mr-2 h-5 w-5" />
                 Account Information
               </CardTitle>
@@ -132,23 +191,23 @@ export default function SettingsPage() {
                 />
               </div>
               
-              {user.user_metadata?.full_name && (
+              {user.user_metadata?.full_name && typeof user.user_metadata.full_name === 'string' ? (
                 <div>
                   <Label htmlFor="name">Full Name</Label>
                   <Input
                     id="name"
-                    value={user.user_metadata.full_name}
+                    value={String(user.user_metadata.full_name)}
                     disabled
                     className="mt-1"
                   />
                 </div>
-              )}
+              ) : null}
 
               <div>
                 <Label htmlFor="provider">Authentication Provider</Label>
                 <div className="mt-1">
                   <Badge variant="secondary">
-                    {user.app_metadata?.provider || 'email'}
+                    {String(user.app_metadata?.provider || 'email')}
                   </Badge>
                 </div>
               </div>
@@ -157,7 +216,7 @@ export default function SettingsPage() {
                 <Label htmlFor="created">Account Created</Label>
                 <div className="mt-1 flex items-center text-sm text-muted-foreground">
                   <Calendar className="mr-1 h-3 w-3" />
-                  {new Date(user.created_at).toLocaleDateString()}
+                  {user.created_at ? new Date(user.created_at).toLocaleDateString() : 'Unknown'}
                 </div>
               </div>
             </CardContent>
@@ -197,6 +256,20 @@ export default function SettingsPage() {
             </CardContent>
           </Card>
         </div>
+
+        {showThemeShowcase && (
+          <Card className="mt-6">
+            <CardHeader>
+              <CardTitle>Design System Theme Showcase</CardTitle>
+              <CardDescription>
+                Complete overview of all design tokens in the current theme
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <ThemeShowcase />
+            </CardContent>
+          </Card>
+        )}
 
         <Card className="mt-6">
           <CardHeader>

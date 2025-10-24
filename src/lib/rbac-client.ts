@@ -9,9 +9,7 @@ import {
   ActionType, 
   Profile, 
   Organization, 
-  OrgMember,
   UserContext,
-  RBACError,
   PermissionDeniedError,
   OrganizationNotFoundError,
   InsufficientRoleError
@@ -167,11 +165,11 @@ export async function getUserContext(userId: string, currentOrgId?: string): Pro
     }
 
     const organizations = await getUserOrganizations(userId);
-    console.log('getUserContext: Profile current_org_id:', (profile as any).current_org_id);
+    console.log('getUserContext: Profile current_org_id:', (profile as { current_org_id?: string }).current_org_id);
     console.log('getUserContext: Available organizations:', organizations.map(org => ({ id: org.id, name: org.name })));
     
     // Use current_org_id from profile if available, otherwise use provided currentOrgId or first org
-    const effectiveOrgId = (profile as any).current_org_id || currentOrgId;
+    const effectiveOrgId = (profile as { current_org_id?: string }).current_org_id || currentOrgId;
     console.log('getUserContext: Effective org ID:', effectiveOrgId);
     
     let currentOrg = null;
@@ -333,7 +331,7 @@ export async function logAuditEvent(
   action: string,
   resourceType: string,
   resourceId?: string,
-  details?: Record<string, any>
+  details?: Record<string, unknown>
 ): Promise<void> {
   try {
     await supabase

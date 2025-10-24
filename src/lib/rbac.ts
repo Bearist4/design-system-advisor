@@ -9,7 +9,6 @@ import {
   ActionType, 
   Profile, 
   Organization, 
-  OrgMember,
   UserContext,
   RBACError,
   PermissionDeniedError,
@@ -31,7 +30,8 @@ export async function getUserProfile(userId: string): Promise<Profile | null> {
     console.error('Error fetching user profile:', error);
     
     // Check if it's an RLS recursion error
-    if ((error as any).code === '42P17' || (error as any).message?.includes('infinite recursion')) {
+    const errorObj = error as { code?: string; message?: string }
+    if (errorObj.code === '42P17' || errorObj.message?.includes('infinite recursion')) {
       console.error('RLS recursion error detected in getUserProfile. Database policies need to be fixed.');
       console.error('Please run FIX_RLS_RECURSION.sql in your Supabase SQL Editor');
     }
@@ -183,11 +183,11 @@ export async function getUserContext(userId: string, currentOrgId?: string): Pro
     }
 
     const organizations = await getUserOrganizations(userId);
-    console.log('getUserContext: Profile current_org_id:', (profile as any).current_org_id);
+    console.log('getUserContext: Profile current_org_id:', (profile as { current_org_id?: string }).current_org_id);
     console.log('getUserContext: Available organizations:', organizations.map(org => ({ id: org.id, name: org.name })));
     
     // Use current_org_id from profile if available, otherwise use provided currentOrgId or first org
-    const effectiveOrgId = (profile as any).current_org_id || currentOrgId;
+    const effectiveOrgId = (profile as { current_org_id?: string }).current_org_id || currentOrgId;
     console.log('getUserContext: Effective org ID:', effectiveOrgId);
     
     let currentOrg = null;
@@ -351,7 +351,7 @@ export async function logAuditEvent(
   action: string,
   resourceType: string,
   resourceId?: string,
-  details?: Record<string, any>
+  details?: Record<string, unknown>
 ): Promise<void> {
   try {
     const supabase = await createClient();
@@ -372,7 +372,7 @@ export async function logAuditEvent(
 }
 
 // Middleware helper to check authentication and basic permissions
-export async function validateAuth(request: Request): Promise<{ userId: string; userContext: UserContext }> {
+export async function validateAuth(): Promise<{ userId: string; userContext: UserContext }> {
   const supabase = await createClient();
   
   const { data: { user }, error } = await supabase.auth.getUser();
@@ -414,7 +414,7 @@ export async function checkAPIPermission(
   resource: ResourceType,
   action: ActionType
 ): Promise<{ userId: string; orgId: string; userContext: UserContext }> {
-  const { userId, userContext } = await validateAuth(request);
+  const { userId, userContext } = await validateAuth();
   
   const orgId = getOrgIdFromRequest(request);
   if (!orgId) {

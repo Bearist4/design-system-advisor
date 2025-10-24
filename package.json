@@ -8,13 +8,15 @@
     "start": "next start",
     "lint": "eslint",
     "test": "playwright test --reporter=list",
+    "test:visual": "playwright test --config=playwright.visual.config.ts",
     "test:ui": "playwright test --ui --config=playwright.config.ui.ts",
     "test:debug": "playwright test --debug",
     "test:report": "playwright show-report",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "lighthouse:ci": "lhci autorun --config=lighthouse.config.js",
+    "depcheck": "npx depcheck"
   },
   "dependencies": {
-    "@supabase/auth-helpers-nextjs": "^0.10.0",
     "@supabase/ssr": "^0.7.0",
     "@supabase/supabase-js": "^2.76.0",
     "autoprefixer": "^10.4.21",
@@ -30,13 +32,19 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@lhci/cli": "^0.15.1",
     "@playwright/test": "^1.40.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.6",
-    "@lhci/cli": "^0.12.0",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "overrides": {
+    "tmp": ">=0.2.4"
   }
 }

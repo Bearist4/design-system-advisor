@@ -6,13 +6,13 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Modal } from '@/components/ui/modal'
-import { Upload, FileText, X, Check, AlertCircle, Eye, Edit2 } from 'lucide-react'
+import { Upload, FileText, X, Check, AlertCircle, Eye } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { categorizeTokens } from '@/lib/utils'
 
 interface UploadedFile {
   file: File
-  content: any
+  content: unknown
   category: string
   isValid: boolean
   error?: string
@@ -179,7 +179,7 @@ export default function UploadPage() {
           const fileExt = uploadedFile.file.name.split('.').pop()
           const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`
           
-          const { data: uploadData, error: uploadError } = await supabase.storage
+          const { error: uploadError } = await supabase.storage
             .from('token-files')
             .upload(fileName, uploadedFile.file)
 
@@ -204,7 +204,7 @@ export default function UploadPage() {
           if (dbError) throw dbError
           
           successCount++
-        } catch (fileError: any) {
+        } catch (fileError: unknown) {
           console.error('Error uploading file:', uploadedFile.file.name, fileError)
           errorCount++
         }
@@ -223,10 +223,11 @@ export default function UploadPage() {
         setUploadStatus('error')
         setUploadMessage('Failed to upload any files')
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Upload error:', error)
       setUploadStatus('error')
-      setUploadMessage('Error uploading files: ' + error.message)
+      const errorObj = error as { message?: string }
+      setUploadMessage('Error uploading files: ' + (errorObj.message || 'Unknown error'))
     } finally {
       setIsUploading(false)
     }
@@ -374,7 +375,7 @@ export default function UploadPage() {
                                   className="group"
                                 >
                                   <Badge 
-                                    variant={uploadedFile.category as any}
+                                    variant={uploadedFile.category as "default" | "secondary" | "destructive" | "outline" | "foundation" | "spacing" | "brand" | "component" | "platform" | "misc"}
                                     className="cursor-pointer hover:opacity-80 transition-opacity"
                                   >
                                     {CATEGORY_OPTIONS.find(opt => opt.value === uploadedFile.category)?.label || uploadedFile.category}
@@ -462,14 +463,14 @@ export default function UploadPage() {
           {previewFile && (
             <div className="space-y-4">
               <div className="flex items-center space-x-2">
-                <Badge variant={previewFile.category as any}>
+                <Badge variant={previewFile.category as "default" | "secondary" | "destructive" | "outline" | "foundation" | "spacing" | "brand" | "component" | "platform" | "misc"}>
                   {previewFile.category}
                 </Badge>
                 <span className="text-sm text-muted-foreground">
                   {(previewFile.file.size / 1024).toFixed(1)} KB
                 </span>
                 <span className="text-sm text-muted-foreground">
-                  • {Object.keys(previewFile.content).length} top-level keys
+                  • {typeof previewFile.content === 'object' && previewFile.content !== null ? Object.keys(previewFile.content as Record<string, unknown>).length : 0} top-level keys
                 </span>
               </div>
               
@@ -478,14 +479,14 @@ export default function UploadPage() {
                 <div className="bg-muted p-3 rounded-lg">
                   <div className="text-sm text-muted-foreground mb-2">Top-level keys:</div>
                   <div className="flex flex-wrap gap-2">
-                    {Object.keys(previewFile.content).slice(0, 10).map((key, index) => (
+                    {typeof previewFile.content === 'object' && previewFile.content !== null ? Object.keys(previewFile.content as Record<string, unknown>).slice(0, 10).map((key, index) => (
                       <Badge key={index} variant="secondary" className="text-xs">
                         {key}
                       </Badge>
-                    ))}
-                    {Object.keys(previewFile.content).length > 10 && (
+                    )) : []}
+                    {typeof previewFile.content === 'object' && previewFile.content !== null && Object.keys(previewFile.content as Record<string, unknown>).length > 10 && (
                       <Badge variant="outline" className="text-xs">
-                        +{Object.keys(previewFile.content).length - 10} more
+                        +{Object.keys(previewFile.content as Record<string, unknown>).length - 10} more
                       </Badge>
                     )}
                   </div>

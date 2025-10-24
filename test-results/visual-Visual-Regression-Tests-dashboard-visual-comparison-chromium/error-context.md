@@ -1,0 +1,63 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
+    - img [ref=e8]
+  - alert [ref=e11]
+  - generic [ref=e12]:
+    - navigation "Main navigation" [ref=e13]:
+      - heading "Design System Advisor" [level=1] [ref=e16]
+    - main [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - heading "Design System Advisor" [level=3] [ref=e21]
+            - paragraph [ref=e22]: Sign in to your account
+          - generic [ref=e23]:
+            - generic [ref=e24]:
+              - generic [ref=e25]:
+                - text: Email
+                - textbox "Email" [ref=e26]:
+                  - /placeholder: Enter your email
+              - generic [ref=e27]:
+                - text: Password
+                - textbox "Password" [ref=e28]:
+                  - /placeholder: Enter your password
+              - button "Sign In" [ref=e29] [cursor=pointer]
+            - generic [ref=e34]: Or continue with
+            - button "GitHub" [ref=e35] [cursor=pointer]:
+              - img [ref=e36]
+              - text: GitHub
+            - button "Don't have an account? Sign up" [ref=e40] [cursor=pointer]
+            - generic [ref=e41]:
+              - heading "Debug Information:" [level=4] [ref=e42]
+              - generic [ref=e43]: "Supabase URL: ✅ Configured Supabase Key: ✅ Configured"
+              - generic [ref=e44]:
+                - button "Test Dashboard Access" [ref=e45] [cursor=pointer]
+                - button "Check Auth Status" [ref=e46] [cursor=pointer]
+                - button "Environment Check" [ref=e47] [cursor=pointer]
+        - generic [ref=e48]:
+          - heading "Authentication Debugger" [level=3] [ref=e50]
+          - generic [ref=e51]:
+            - generic [ref=e52]:
+              - button "Check Auth State" [ref=e53] [cursor=pointer]
+              - button "Sign Out" [ref=e54] [cursor=pointer]
+              - button "Test Sign In" [ref=e55] [cursor=pointer]
+              - button "Test Profile Creation" [ref=e56] [cursor=pointer]
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - heading "Current State:" [level=4] [ref=e59]
+                - generic [ref=e60]: "{ \"user\": null, \"session\": null, \"userError\": { \"__isAuthError\": true, \"name\": \"AuthSessionMissingError\", \"status\": 400 }, \"sessionError\": null, \"timestamp\": \"2025-10-24T15:20:39.189Z\" }"
+              - generic [ref=e61]:
+                - heading "Environment Variables:" [level=4] [ref=e62]
+                - generic [ref=e63]:
+                  - generic [ref=e64]: "NEXT_PUBLIC_SUPABASE_URL: ✅ Set"
+                  - generic [ref=e65]: "NEXT_PUBLIC_SUPABASE_ANON_KEY: ✅ Set"
+              - generic [ref=e66]:
+                - heading "Browser Info:" [level=4] [ref=e67]
+                - generic [ref=e68]:
+                  - generic [ref=e69]: "URL: http://localhost:3000/login"
+                  - generic [ref=e70]: "Cookies:"
+                  - generic [ref=e71]: "User Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Safari/537.36"
+```

@@ -79,6 +79,7 @@ jobs:
           fi
 
   # Performance & Accessibility Testing
+  # Note: Lighthouse CI uses port 3001, Playwright uses port 3000
   performance-testing:
     runs-on: ubuntu-latest
     needs: build-and-test
@@ -98,23 +99,48 @@ jobs:
       - name: Install Playwright
         run: npx playwright install --with-deps
 
+      - name: Build application
+        run: |
+          if [ -z "$NEXT_PUBLIC_SUPABASE_URL" ]; then
+            echo "Warning: NEXT_PUBLIC_SUPABASE_URL not set, using placeholder"
+            export NEXT_PUBLIC_SUPABASE_URL="https://placeholder.supabase.co"
+          fi
+          if [ -z "$NEXT_PUBLIC_SUPABASE_ANON_KEY" ]; then
+            echo "Warning: NEXT_PUBLIC_SUPABASE_ANON_KEY not set, using placeholder"
+            export NEXT_PUBLIC_SUPABASE_ANON_KEY="placeholder-key"
+          fi
+          npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
       - name: Start application
         run: |
-          npm run build
           npm start &
-          sleep 10
+          sleep 15
+          # Wait for server to be ready
+          timeout 30 bash -c 'until curl -f http://localhost:3000 > /dev/null 2>&1; do sleep 1; done'
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
       - name: Run Lighthouse CI
         run: |
           npm install -g @lhci/cli@0.12.x
-          lhci autorun
+          npm run lighthouse:ci
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
       - name: Run Playwright tests
         run: npx playwright test
         env:
           PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
   # Visual Regression Testing
+  # Note: Uses port 3000, runs in parallel with performance-testing
   visual-testing:
     runs-on: ubuntu-latest
     needs: build-and-test
@@ -134,10 +160,37 @@ jobs:
       - name: Install Playwright
         run: npx playwright install --with-deps
 
+      - name: Build application
+        run: |
+          if [ -z "$NEXT_PUBLIC_SUPABASE_URL" ]; then
+            echo "Warning: NEXT_PUBLIC_SUPABASE_URL not set, using placeholder"
+            export NEXT_PUBLIC_SUPABASE_URL="https://placeholder.supabase.co"
+          fi
+          if [ -z "$NEXT_PUBLIC_SUPABASE_ANON_KEY" ]; then
+            echo "Warning: NEXT_PUBLIC_SUPABASE_ANON_KEY not set, using placeholder"
+            export NEXT_PUBLIC_SUPABASE_ANON_KEY="placeholder-key"
+          fi
+          npm run build
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
+      - name: Start application
+        run: |
+          npm start &
+          sleep 15
+          # Wait for server to be ready
+          timeout 30 bash -c 'until curl -f http://localhost:3000 > /dev/null 2>&1; do sleep 1; done'
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+
       - name: Run visual tests
-        run: npx playwright test --grep="visual"
+        run: npm run test:visual
         env:
           PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
   # Generate QA Report
   generate-report:
@@ -211,6 +264,6 @@ jobs:
           output: 'trivy-results.sarif'
 
       - name: Upload Trivy scan results
-        uses: github/code-scanning/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'trivy-results.sarif'

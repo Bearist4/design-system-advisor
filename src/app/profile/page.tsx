@@ -32,7 +32,7 @@ interface OrganizationData {
 }
 
 export default function ProfilePage() {
-  const [user, setUser] = useState<any>(null)
+  const [user, setUser] = useState<{ id: string; email?: string } | null>(null)
   const [profile, setProfile] = useState<ProfileData | null>(null)
   const [userContext, setUserContext] = useState<UserContext | null>(null)
   const [organizations, setOrganizations] = useState<OrganizationData[]>([])
@@ -97,8 +97,8 @@ export default function ProfilePage() {
         } else {
           const orgs = orgMemberships?.map(membership => ({
             id: membership.org_id,
-            name: membership.organizations.name,
-            slug: membership.organizations.slug,
+            name: membership.organizations?.[0]?.name || 'Unknown',
+            slug: membership.organizations?.[0]?.slug || 'unknown',
             role: membership.role,
             status: membership.status
           })) || []

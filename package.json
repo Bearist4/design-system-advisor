@@ -8,10 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "test": "playwright test --reporter=list",
+    "test:visual": "playwright test --config=playwright.visual.config.ts",
     "test:ui": "playwright test --ui --config=playwright.config.ui.ts",
     "test:debug": "playwright test --debug",
     "test:report": "playwright show-report",
     "lighthouse": "lhci autorun",
+    "lighthouse:ci": "lhci autorun --config=lighthouse.config.js",
     "depcheck": "npx depcheck"
   },
   "dependencies": {

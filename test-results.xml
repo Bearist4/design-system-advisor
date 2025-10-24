@@ -1,2 +1,1955 @@
-<testsuites id="" name="" tests="0" failures="0" skipped="0" errors="0" time="36.977335">
+<testsuites id="" name="" tests="25" failures="25" skipped="0" errors="0" time="51.730517">
+<testsuite name="visual.spec.ts" timestamp="2025-10-24T15:20:35.321Z" hostname="chromium" tests="5" failures="5" skipped="0" time="19.288" errors="0">
+<testcase name="Visual Regression Tests › homepage visual comparison" classname="visual.spec.ts" time="4.115">
+<failure message="visual.spec.ts:4:7 homepage visual comparison" type="FAILURE">
+<![CDATA[  [chromium] › visual.spec.ts:4:7 › Visual Regression Tests › homepage visual comparison ───────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39869 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: homepage.png
+
+    Call log:
+      - Expect "toHaveScreenshot(homepage.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39869 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39869 pixels (ratio 0.05 of all image pixels) are different.
+
+
+       7 |     
+       8 |     // Take full page screenshot
+    >  9 |     await expect(page).toHaveScreenshot('homepage.png');
+         |                        ^
+      10 |   });
+      11 |
+      12 |   test('login page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:9:24
+
+    attachment #1: homepage (image/png) ────────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/homepage-chromium-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/homepage-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/homepage-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/homepage-chromium-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/homepage-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/homepage-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › login page visual comparison" classname="visual.spec.ts" time="4.079">
+<failure message="visual.spec.ts:12:7 login page visual comparison" type="FAILURE">
+<![CDATA[  [chromium] › visual.spec.ts:12:7 › Visual Regression Tests › login page visual comparison ────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39869 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: login-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(login-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39869 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39869 pixels (ratio 0.05 of all image pixels) are different.
+
+
+      15 |     
+      16 |     // Take full page screenshot
+    > 17 |     await expect(page).toHaveScreenshot('login-page.png');
+         |                        ^
+      18 |   });
+      19 |
+      20 |   test('dashboard visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:17:24
+
+    attachment #1: login-page (image/png) ──────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/login-page-chromium-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/login-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/login-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/login-page-chromium-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/login-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/login-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › dashboard visual comparison" classname="visual.spec.ts" time="3.96">
+<failure message="visual.spec.ts:20:7 dashboard visual comparison" type="FAILURE">
+<![CDATA[  [chromium] › visual.spec.ts:20:7 › Visual Regression Tests › dashboard visual comparison ─────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39869 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: dashboard.png
+
+    Call log:
+      - Expect "toHaveScreenshot(dashboard.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39869 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39869 pixels (ratio 0.05 of all image pixels) are different.
+
+
+      23 |     
+      24 |     // Take full page screenshot
+    > 25 |     await expect(page).toHaveScreenshot('dashboard.png');
+         |                        ^
+      26 |   });
+      27 |
+      28 |   test('upload page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:25:24
+
+    attachment #1: dashboard (image/png) ───────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/dashboard-chromium-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/dashboard-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/dashboard-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/dashboard-chromium-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/dashboard-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/dashboard-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › upload page visual comparison" classname="visual.spec.ts" time="3.989">
+<failure message="visual.spec.ts:28:7 upload page visual comparison" type="FAILURE">
+<![CDATA[  [chromium] › visual.spec.ts:28:7 › Visual Regression Tests › upload page visual comparison ───────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39869 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: upload-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(upload-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39869 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39869 pixels (ratio 0.05 of all image pixels) are different.
+
+
+      31 |     
+      32 |     // Take full page screenshot
+    > 33 |     await expect(page).toHaveScreenshot('upload-page.png');
+         |                        ^
+      34 |   });
+      35 |
+      36 |   test('component visual tests', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:33:24
+
+    attachment #1: upload-page (image/png) ─────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/upload-page-chromium-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/upload-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/upload-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/upload-page-chromium-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/upload-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/upload-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › component visual tests" classname="visual.spec.ts" time="3.145">
+<failure message="visual.spec.ts:36:7 component visual tests" type="FAILURE">
+<![CDATA[  [chromium] › visual.spec.ts:36:7 › Visual Regression Tests › component visual tests ──────────────
+
+    Error: expect(locator).toHaveScreenshot(expected) failed
+
+    Locator: locator('button').first()
+      61 pixels (ratio 0.01 of all image pixels) are different.
+
+      Snapshot: button-component.png
+
+    Call log:
+      - Expect "toHaveScreenshot(button-component.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - waiting for locator('button').first()
+        - locator resolved to <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">Sign In</button>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - 61 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - waiting for locator('button').first()
+        - locator resolved to <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">Sign In</button>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - captured a stable screenshot
+      - 61 pixels (ratio 0.01 of all image pixels) are different.
+
+
+      41 |     const buttonCount = await buttons.count();
+      42 |     if (buttonCount > 0) {
+    > 43 |       await expect(buttons.first()).toHaveScreenshot('button-component.png');
+         |                                     ^
+      44 |     }
+      45 |     
+      46 |     // Test card components
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:43:37
+
+    attachment #1: button-component (image/png) ────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/button-component-chromium-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/button-component-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/button-component-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/button-component-chromium-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/button-component-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/button-component-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-chromium/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="visual.spec.ts" timestamp="2025-10-24T15:20:35.321Z" hostname="firefox" tests="5" failures="5" skipped="0" time="51.964" errors="0">
+<testcase name="Visual Regression Tests › homepage visual comparison" classname="visual.spec.ts" time="14.42">
+<failure message="visual.spec.ts:4:7 homepage visual comparison" type="FAILURE">
+<![CDATA[  [firefox] › visual.spec.ts:4:7 › Visual Regression Tests › homepage visual comparison ────────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39925 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: homepage.png
+
+    Call log:
+      - Expect "toHaveScreenshot(homepage.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39891 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 500ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 1000ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39925 pixels (ratio 0.05 of all image pixels) are different.
+
+
+       7 |     
+       8 |     // Take full page screenshot
+    >  9 |     await expect(page).toHaveScreenshot('homepage.png');
+         |                        ^
+      10 |   });
+      11 |
+      12 |   test('login page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:9:24
+
+    attachment #1: homepage (image/png) ────────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/homepage-firefox-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/homepage-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/homepage-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/homepage-firefox-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/homepage-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/homepage-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › login page visual comparison" classname="visual.spec.ts" time="9.36">
+<failure message="visual.spec.ts:12:7 login page visual comparison" type="FAILURE">
+<![CDATA[  [firefox] › visual.spec.ts:12:7 › Visual Regression Tests › login page visual comparison ─────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39891 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: login-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(login-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39891 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39891 pixels (ratio 0.05 of all image pixels) are different.
+
+
+      15 |     
+      16 |     // Take full page screenshot
+    > 17 |     await expect(page).toHaveScreenshot('login-page.png');
+         |                        ^
+      18 |   });
+      19 |
+      20 |   test('dashboard visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:17:24
+
+    attachment #1: login-page (image/png) ──────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/login-page-firefox-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/login-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/login-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/login-page-firefox-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/login-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/login-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › dashboard visual comparison" classname="visual.spec.ts" time="7.894">
+<failure message="visual.spec.ts:20:7 dashboard visual comparison" type="FAILURE">
+<![CDATA[  [firefox] › visual.spec.ts:20:7 › Visual Regression Tests › dashboard visual comparison ──────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39925 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: dashboard.png
+
+    Call log:
+      - Expect "toHaveScreenshot(dashboard.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39891 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39925 pixels (ratio 0.05 of all image pixels) are different.
+
+
+      23 |     
+      24 |     // Take full page screenshot
+    > 25 |     await expect(page).toHaveScreenshot('dashboard.png');
+         |                        ^
+      26 |   });
+      27 |
+      28 |   test('upload page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:25:24
+
+    attachment #1: dashboard (image/png) ───────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/dashboard-firefox-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/dashboard-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/dashboard-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/dashboard-firefox-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/dashboard-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/dashboard-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › upload page visual comparison" classname="visual.spec.ts" time="13.204">
+<failure message="visual.spec.ts:28:7 upload page visual comparison" type="FAILURE">
+<![CDATA[  [firefox] › visual.spec.ts:28:7 › Visual Regression Tests › upload page visual comparison ────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39891 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: upload-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(upload-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39925 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 500ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 1000ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39891 pixels (ratio 0.05 of all image pixels) are different.
+
+
+      31 |     
+      32 |     // Take full page screenshot
+    > 33 |     await expect(page).toHaveScreenshot('upload-page.png');
+         |                        ^
+      34 |   });
+      35 |
+      36 |   test('component visual tests', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:33:24
+
+    attachment #1: upload-page (image/png) ─────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/upload-page-firefox-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/upload-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/upload-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/upload-page-firefox-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/upload-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/upload-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › component visual tests" classname="visual.spec.ts" time="7.086">
+<failure message="visual.spec.ts:36:7 component visual tests" type="FAILURE">
+<![CDATA[  [firefox] › visual.spec.ts:36:7 › Visual Regression Tests › component visual tests ───────────────
+
+    Error: expect(locator).toHaveScreenshot(expected) failed
+
+    Locator: locator('[class*="card"]').first()
+      Expected an image 448px by 648px, received 448px by 656px. 5453 pixels (ratio 0.02 of all image pixels) are different.
+
+      Snapshot: card-component.png
+
+    Call log:
+      - Expect "toHaveScreenshot(card-component.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - waiting for locator('[class*="card"]').first()
+        - locator resolved to <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-md mx-auto">…</div>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - Expected an image 448px by 648px, received 448px by 656px. 5453 pixels (ratio 0.02 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - waiting for locator('[class*="card"]').first()
+        - locator resolved to <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-md mx-auto">…</div>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - captured a stable screenshot
+      - Expected an image 448px by 648px, received 448px by 656px. 5453 pixels (ratio 0.02 of all image pixels) are different.
+
+
+      48 |     const cardCount = await cards.count();
+      49 |     if (cardCount > 0) {
+    > 50 |       await expect(cards.first()).toHaveScreenshot('card-component.png');
+         |                                   ^
+      51 |     }
+      52 |   });
+      53 | });
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:50:35
+
+    attachment #1: card-component (image/png) ──────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/card-component-firefox-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/card-component-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/card-component-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/card-component-firefox-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/card-component-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/card-component-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-firefox/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="visual.spec.ts" timestamp="2025-10-24T15:20:35.321Z" hostname="webkit" tests="5" failures="5" skipped="0" time="29.853" errors="0">
+<testcase name="Visual Regression Tests › homepage visual comparison" classname="visual.spec.ts" time="6.966">
+<failure message="visual.spec.ts:4:7 homepage visual comparison" type="FAILURE">
+<![CDATA[  [webkit] › visual.spec.ts:4:7 › Visual Regression Tests › homepage visual comparison ─────────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39844 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: homepage.png
+
+    Call log:
+      - Expect "toHaveScreenshot(homepage.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39844 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 500ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39844 pixels (ratio 0.05 of all image pixels) are different.
+
+
+       7 |     
+       8 |     // Take full page screenshot
+    >  9 |     await expect(page).toHaveScreenshot('homepage.png');
+         |                        ^
+      10 |   });
+      11 |
+      12 |   test('login page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:9:24
+
+    attachment #1: homepage (image/png) ────────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/homepage-webkit-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/homepage-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/homepage-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/homepage-webkit-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/homepage-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/homepage-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › login page visual comparison" classname="visual.spec.ts" time="5.389">
+<failure message="visual.spec.ts:12:7 login page visual comparison" type="FAILURE">
+<![CDATA[  [webkit] › visual.spec.ts:12:7 › Visual Regression Tests › login page visual comparison ──────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39844 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: login-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(login-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39844 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39844 pixels (ratio 0.05 of all image pixels) are different.
+
+
+      15 |     
+      16 |     // Take full page screenshot
+    > 17 |     await expect(page).toHaveScreenshot('login-page.png');
+         |                        ^
+      18 |   });
+      19 |
+      20 |   test('dashboard visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:17:24
+
+    attachment #1: login-page (image/png) ──────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/login-page-webkit-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/login-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/login-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/login-page-webkit-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/login-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/login-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › dashboard visual comparison" classname="visual.spec.ts" time="8.668">
+<failure message="visual.spec.ts:20:7 dashboard visual comparison" type="FAILURE">
+<![CDATA[  [webkit] › visual.spec.ts:20:7 › Visual Regression Tests › dashboard visual comparison ───────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+    Timeout: 5000ms
+      Failed to take two consecutive stable screenshots.
+
+      Snapshot: dashboard.png
+
+    Call log:
+      - Expect "toHaveScreenshot(dashboard.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39844 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 500ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 1000ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 52 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 1000ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 18 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 1000ms before taking screenshot
+      - Timeout 5000ms exceeded.
+
+
+      23 |     
+      24 |     // Take full page screenshot
+    > 25 |     await expect(page).toHaveScreenshot('dashboard.png');
+         |                        ^
+      26 |   });
+      27 |
+      28 |   test('upload page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:25:24
+
+    attachment #1: dashboard (image/png) ───────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/dashboard-webkit-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/dashboard-actual.png
+    Previous: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/dashboard-previous.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/dashboard-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/dashboard-webkit-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/dashboard-previous.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/dashboard-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/dashboard-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › upload page visual comparison" classname="visual.spec.ts" time="5.259">
+<failure message="visual.spec.ts:28:7 upload page visual comparison" type="FAILURE">
+<![CDATA[  [webkit] › visual.spec.ts:28:7 › Visual Regression Tests › upload page visual comparison ─────────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      39835 pixels (ratio 0.05 of all image pixels) are different.
+
+      Snapshot: upload-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(upload-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 39782 pixels (ratio 0.05 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 52 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 39835 pixels (ratio 0.05 of all image pixels) are different.
+
+
+      31 |     
+      32 |     // Take full page screenshot
+    > 33 |     await expect(page).toHaveScreenshot('upload-page.png');
+         |                        ^
+      34 |   });
+      35 |
+      36 |   test('component visual tests', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:33:24
+
+    attachment #1: upload-page (image/png) ─────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/upload-page-webkit-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/upload-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/upload-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/upload-page-webkit-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/upload-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/upload-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › component visual tests" classname="visual.spec.ts" time="3.571">
+<failure message="visual.spec.ts:36:7 component visual tests" type="FAILURE">
+<![CDATA[  [webkit] › visual.spec.ts:36:7 › Visual Regression Tests › component visual tests ────────────────
+
+    Error: expect(locator).toHaveScreenshot(expected) failed
+
+    Locator: locator('button').first()
+      60 pixels (ratio 0.01 of all image pixels) are different.
+
+      Snapshot: button-component.png
+
+    Call log:
+      - Expect "toHaveScreenshot(button-component.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - waiting for locator('button').first()
+        - locator resolved to <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">Sign In</button>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - 60 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - waiting for locator('button').first()
+        - locator resolved to <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">Sign In</button>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - captured a stable screenshot
+      - 60 pixels (ratio 0.01 of all image pixels) are different.
+
+
+      41 |     const buttonCount = await buttons.count();
+      42 |     if (buttonCount > 0) {
+    > 43 |       await expect(buttons.first()).toHaveScreenshot('button-component.png');
+         |                                     ^
+      44 |     }
+      45 |     
+      46 |     // Test card components
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:43:37
+
+    attachment #1: button-component (image/png) ────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/button-component-webkit-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/button-component-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/button-component-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/button-component-webkit-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/button-component-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/button-component-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-webkit/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="visual.spec.ts" timestamp="2025-10-24T15:20:35.321Z" hostname="Mobile Chrome" tests="5" failures="5" skipped="0" time="12.899" errors="0">
+<testcase name="Visual Regression Tests › homepage visual comparison" classname="visual.spec.ts" time="4.134">
+<failure message="visual.spec.ts:4:7 homepage visual comparison" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual.spec.ts:4:7 › Visual Regression Tests › homepage visual comparison ──────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      32756 pixels (ratio 0.12 of all image pixels) are different.
+
+      Snapshot: homepage.png
+
+    Call log:
+      - Expect "toHaveScreenshot(homepage.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 32725 pixels (ratio 0.12 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 33 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 33 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 500ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 35 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 1000ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 32756 pixels (ratio 0.12 of all image pixels) are different.
+
+
+       7 |     
+       8 |     // Take full page screenshot
+    >  9 |     await expect(page).toHaveScreenshot('homepage.png');
+         |                        ^
+      10 |   });
+      11 |
+      12 |   test('login page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:9:24
+
+    attachment #1: homepage (image/png) ────────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/homepage-Mobile-Chrome-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/homepage-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/homepage-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/homepage-Mobile-Chrome-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/homepage-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/homepage-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › login page visual comparison" classname="visual.spec.ts" time="2.301">
+<failure message="visual.spec.ts:12:7 login page visual comparison" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual.spec.ts:12:7 › Visual Regression Tests › login page visual comparison ───
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      32756 pixels (ratio 0.12 of all image pixels) are different.
+
+      Snapshot: login-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(login-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 32725 pixels (ratio 0.12 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 33 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 32756 pixels (ratio 0.12 of all image pixels) are different.
+
+
+      15 |     
+      16 |     // Take full page screenshot
+    > 17 |     await expect(page).toHaveScreenshot('login-page.png');
+         |                        ^
+      18 |   });
+      19 |
+      20 |   test('dashboard visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:17:24
+
+    attachment #1: login-page (image/png) ──────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/login-page-Mobile-Chrome-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/login-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/login-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/login-page-Mobile-Chrome-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/login-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/login-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › dashboard visual comparison" classname="visual.spec.ts" time="3.069">
+<failure message="visual.spec.ts:20:7 dashboard visual comparison" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual.spec.ts:20:7 › Visual Regression Tests › dashboard visual comparison ────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      32725 pixels (ratio 0.12 of all image pixels) are different.
+
+      Snapshot: dashboard.png
+
+    Call log:
+      - Expect "toHaveScreenshot(dashboard.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 32725 pixels (ratio 0.12 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 33 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 33 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 500ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 32725 pixels (ratio 0.12 of all image pixels) are different.
+
+
+      23 |     
+      24 |     // Take full page screenshot
+    > 25 |     await expect(page).toHaveScreenshot('dashboard.png');
+         |                        ^
+      26 |   });
+      27 |
+      28 |   test('upload page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:25:24
+
+    attachment #1: dashboard (image/png) ───────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/dashboard-Mobile-Chrome-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/dashboard-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/dashboard-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/dashboard-Mobile-Chrome-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/dashboard-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/dashboard-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › upload page visual comparison" classname="visual.spec.ts" time="2.271">
+<failure message="visual.spec.ts:28:7 upload page visual comparison" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual.spec.ts:28:7 › Visual Regression Tests › upload page visual comparison ──
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      32756 pixels (ratio 0.12 of all image pixels) are different.
+
+      Snapshot: upload-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(upload-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 32725 pixels (ratio 0.12 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 33 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 32756 pixels (ratio 0.12 of all image pixels) are different.
+
+
+      31 |     
+      32 |     // Take full page screenshot
+    > 33 |     await expect(page).toHaveScreenshot('upload-page.png');
+         |                        ^
+      34 |   });
+      35 |
+      36 |   test('component visual tests', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:33:24
+
+    attachment #1: upload-page (image/png) ─────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/upload-page-Mobile-Chrome-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/upload-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/upload-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/upload-page-Mobile-Chrome-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/upload-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/upload-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › component visual tests" classname="visual.spec.ts" time="1.124">
+<failure message="visual.spec.ts:36:7 component visual tests" type="FAILURE">
+<![CDATA[  [Mobile Chrome] › visual.spec.ts:36:7 › Visual Regression Tests › component visual tests ─────────
+
+    Error: expect(locator).toHaveScreenshot(expected) failed
+
+    Locator: locator('button').first()
+      55 pixels (ratio 0.01 of all image pixels) are different.
+
+      Snapshot: button-component.png
+
+    Call log:
+      - Expect "toHaveScreenshot(button-component.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - waiting for locator('button').first()
+        - locator resolved to <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">Sign In</button>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - 55 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - waiting for locator('button').first()
+        - locator resolved to <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">Sign In</button>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - captured a stable screenshot
+      - 55 pixels (ratio 0.01 of all image pixels) are different.
+
+
+      41 |     const buttonCount = await buttons.count();
+      42 |     if (buttonCount > 0) {
+    > 43 |       await expect(buttons.first()).toHaveScreenshot('button-component.png');
+         |                                     ^
+      44 |     }
+      45 |     
+      46 |     // Test card components
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:43:37
+
+    attachment #1: button-component (image/png) ────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/button-component-Mobile-Chrome-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/button-component-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/button-component-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/button-component-Mobile-Chrome-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/button-component-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/button-component-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Chrome/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+<testsuite name="visual.spec.ts" timestamp="2025-10-24T15:20:35.321Z" hostname="Mobile Safari" tests="5" failures="5" skipped="0" time="20.146" errors="0">
+<testcase name="Visual Regression Tests › homepage visual comparison" classname="visual.spec.ts" time="2.74">
+<failure message="visual.spec.ts:4:7 homepage visual comparison" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual.spec.ts:4:7 › Visual Regression Tests › homepage visual comparison ──────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      31961 pixels (ratio 0.13 of all image pixels) are different.
+
+      Snapshot: homepage.png
+
+    Call log:
+      - Expect "toHaveScreenshot(homepage.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 31961 pixels (ratio 0.13 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 31961 pixels (ratio 0.13 of all image pixels) are different.
+
+
+       7 |     
+       8 |     // Take full page screenshot
+    >  9 |     await expect(page).toHaveScreenshot('homepage.png');
+         |                        ^
+      10 |   });
+      11 |
+      12 |   test('login page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:9:24
+
+    attachment #1: homepage (image/png) ────────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/homepage-Mobile-Safari-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/homepage-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/homepage-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/homepage-Mobile-Safari-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/homepage-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/homepage-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-homepage-visual-comparison-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › login page visual comparison" classname="visual.spec.ts" time="5.184">
+<failure message="visual.spec.ts:12:7 login page visual comparison" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual.spec.ts:12:7 › Visual Regression Tests › login page visual comparison ───
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      31995 pixels (ratio 0.13 of all image pixels) are different.
+
+      Snapshot: login-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(login-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 31961 pixels (ratio 0.13 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 500ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 1000ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 31995 pixels (ratio 0.13 of all image pixels) are different.
+
+
+      15 |     
+      16 |     // Take full page screenshot
+    > 17 |     await expect(page).toHaveScreenshot('login-page.png');
+         |                        ^
+      18 |   });
+      19 |
+      20 |   test('dashboard visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:17:24
+
+    attachment #1: login-page (image/png) ──────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/login-page-Mobile-Safari-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/login-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/login-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/login-page-Mobile-Safari-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/login-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/login-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-login-page-visual-comparison-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › dashboard visual comparison" classname="visual.spec.ts" time="5.766">
+<failure message="visual.spec.ts:20:7 dashboard visual comparison" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual.spec.ts:20:7 › Visual Regression Tests › dashboard visual comparison ────
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      31999 pixels (ratio 0.13 of all image pixels) are different.
+
+      Snapshot: dashboard.png
+
+    Call log:
+      - Expect "toHaveScreenshot(dashboard.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 31965 pixels (ratio 0.13 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 500ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 1000ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 31999 pixels (ratio 0.13 of all image pixels) are different.
+
+
+      23 |     
+      24 |     // Take full page screenshot
+    > 25 |     await expect(page).toHaveScreenshot('dashboard.png');
+         |                        ^
+      26 |   });
+      27 |
+      28 |   test('upload page visual comparison', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:25:24
+
+    attachment #1: dashboard (image/png) ───────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/dashboard-Mobile-Safari-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/dashboard-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/dashboard-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/dashboard-Mobile-Safari-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/dashboard-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/dashboard-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-dashboard-visual-comparison-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › upload page visual comparison" classname="visual.spec.ts" time="3.81">
+<failure message="visual.spec.ts:28:7 upload page visual comparison" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual.spec.ts:28:7 › Visual Regression Tests › upload page visual comparison ──
+
+    Error: expect(page).toHaveScreenshot(expected) failed
+
+      31995 pixels (ratio 0.13 of all image pixels) are different.
+
+      Snapshot: upload-page.png
+
+    Call log:
+      - Expect "toHaveScreenshot(upload-page.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 31961 pixels (ratio 0.13 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - 34 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 250ms before taking screenshot
+      - taking page screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - captured a stable screenshot
+      - 31995 pixels (ratio 0.13 of all image pixels) are different.
+
+
+      31 |     
+      32 |     // Take full page screenshot
+    > 33 |     await expect(page).toHaveScreenshot('upload-page.png');
+         |                        ^
+      34 |   });
+      35 |
+      36 |   test('component visual tests', async ({ page }) => {
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:33:24
+
+    attachment #1: upload-page (image/png) ─────────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/upload-page-Mobile-Safari-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/upload-page-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/upload-page-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/upload-page-Mobile-Safari-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/upload-page-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/upload-page-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-upload-page-visual-comparison-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+<testcase name="Visual Regression Tests › component visual tests" classname="visual.spec.ts" time="2.646">
+<failure message="visual.spec.ts:36:7 component visual tests" type="FAILURE">
+<![CDATA[  [Mobile Safari] › visual.spec.ts:36:7 › Visual Regression Tests › component visual tests ─────────
+
+    Error: expect(locator).toHaveScreenshot(expected) failed
+
+    Locator: locator('button').first()
+      60 pixels (ratio 0.01 of all image pixels) are different.
+
+      Snapshot: button-component.png
+
+    Call log:
+      - Expect "toHaveScreenshot(button-component.png)" with timeout 5000ms
+        - verifying given screenshot expectation
+      - waiting for locator('button').first()
+        2 × locator resolved to <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">Sign In</button>
+        - taking element screenshot
+          - disabled all CSS animations
+        - waiting for fonts to load...
+        - fonts loaded
+        - attempting scroll into view action
+          - waiting for element to be stable
+      - 60 pixels (ratio 0.01 of all image pixels) are different.
+      - waiting 100ms before taking screenshot
+      - waiting for locator('button').first()
+        - locator resolved to <button type="submit" class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">Sign In</button>
+      - taking element screenshot
+        - disabled all CSS animations
+      - waiting for fonts to load...
+      - fonts loaded
+      - attempting scroll into view action
+        - waiting for element to be stable
+      - captured a stable screenshot
+      - 60 pixels (ratio 0.01 of all image pixels) are different.
+
+
+      41 |     const buttonCount = await buttons.count();
+      42 |     if (buttonCount > 0) {
+    > 43 |       await expect(buttons.first()).toHaveScreenshot('button-component.png');
+         |                                     ^
+      44 |     }
+      45 |     
+      46 |     // Test card components
+        at /Users/bearista/dsa/design-system-advisor/tests/visual.spec.ts:43:37
+
+    attachment #1: button-component (image/png) ────────────────────────────────────────────────────
+    Expected: visual.spec.ts-snapshots/button-component-Mobile-Safari-darwin.png
+    Received: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/button-component-actual.png
+    Diff:     ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/button-component-diff.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: video (video/webm) ──────────────────────────────────────────────────────────────
+    ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ../test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/error-context.md
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|tests/visual.spec.ts-snapshots/button-component-Mobile-Safari-darwin.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/button-component-actual.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/button-component-diff.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/video.webm]]
+
+[[ATTACHMENT|test-results/visual-Visual-Regression-Tests-component-visual-tests-Mobile-Safari/error-context.md]]
+]]>
+</system-out>
+</testcase>
+</testsuite>
 </testsuites>

@@ -2,62 +2,62 @@
 
 ```yaml
 - generic [active] [ref=e1]:
-  - generic [ref=e2]:
-    - navigation "Main navigation" [ref=e3]:
-      - heading "Design System Advisor" [level=1] [ref=e6]
-    - main [ref=e7]:
-      - generic [ref=e8]:
-        - generic [ref=e9]:
-          - generic [ref=e10]:
-            - heading "Design System Advisor" [level=3] [ref=e11]
-            - paragraph [ref=e12]: Sign in to your account
-          - generic [ref=e13]:
-            - generic [ref=e14]:
-              - generic [ref=e15]:
+  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
+    - img [ref=e8]
+  - alert [ref=e11]
+  - generic [ref=e12]:
+    - navigation "Main navigation" [ref=e13]:
+      - heading "Design System Advisor" [level=1] [ref=e16]
+    - main [ref=e17]:
+      - generic [ref=e18]:
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - heading "Design System Advisor" [level=3] [ref=e21]
+            - paragraph [ref=e22]: Sign in to your account
+          - generic [ref=e23]:
+            - generic [ref=e24]:
+              - generic [ref=e25]:
                 - text: Email
-                - textbox "Email" [ref=e16]:
+                - textbox "Email" [ref=e26]:
                   - /placeholder: Enter your email
-              - generic [ref=e17]:
+              - generic [ref=e27]:
                 - text: Password
-                - textbox "Password" [ref=e18]:
+                - textbox "Password" [ref=e28]:
                   - /placeholder: Enter your password
-              - button "Sign In" [ref=e19] [cursor=pointer]
-            - generic [ref=e24]: Or continue with
-            - button "GitHub" [ref=e25] [cursor=pointer]:
-              - img [ref=e26]
+              - button "Sign In" [ref=e29] [cursor=pointer]
+            - generic [ref=e34]: Or continue with
+            - button "GitHub" [ref=e35] [cursor=pointer]:
+              - img [ref=e36]
               - text: GitHub
-            - button "Don't have an account? Sign up" [ref=e30] [cursor=pointer]
-            - generic [ref=e31]:
-              - heading "Debug Information:" [level=4] [ref=e32]
-              - generic [ref=e33]: "Supabase URL: ✅ Configured Supabase Key: ✅ Configured"
-              - generic [ref=e34]:
-                - button "Test Dashboard Access" [ref=e35] [cursor=pointer]
-                - button "Check Auth Status" [ref=e36] [cursor=pointer]
-                - button "Environment Check" [ref=e37] [cursor=pointer]
-        - generic [ref=e38]:
-          - heading "Authentication Debugger" [level=3] [ref=e40]
-          - generic [ref=e41]:
-            - generic [ref=e42]:
-              - button "Check Auth State" [ref=e43] [cursor=pointer]
-              - button "Sign Out" [ref=e44] [cursor=pointer]
-              - button "Test Sign In" [ref=e45] [cursor=pointer]
-              - button "Test Profile Creation" [ref=e46] [cursor=pointer]
-            - generic [ref=e47]:
-              - generic [ref=e48]:
-                - heading "Current State:" [level=4] [ref=e49]
-                - generic [ref=e50]: "{ \"user\": null, \"session\": null, \"userError\": { \"__isAuthError\": true, \"name\": \"AuthSessionMissingError\", \"status\": 400 }, \"sessionError\": null, \"timestamp\": \"2025-10-24T12:15:58.764Z\" }"
-              - generic [ref=e51]:
-                - heading "Environment Variables:" [level=4] [ref=e52]
-                - generic [ref=e53]:
-                  - generic [ref=e54]: "NEXT_PUBLIC_SUPABASE_URL: ✅ Set"
-                  - generic [ref=e55]: "NEXT_PUBLIC_SUPABASE_ANON_KEY: ✅ Set"
-              - generic [ref=e56]:
-                - heading "Browser Info:" [level=4] [ref=e57]
-                - generic [ref=e58]:
-                  - generic [ref=e59]: "URL: http://localhost:3000/login"
-                  - generic [ref=e60]: "Cookies:"
-                  - generic [ref=e61]: "User Agent: Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Mobile Safari/537.36"
-  - button "Open Next.js Dev Tools" [ref=e67] [cursor=pointer]:
-    - img [ref=e68]
-  - alert [ref=e71]
+            - button "Don't have an account? Sign up" [ref=e40] [cursor=pointer]
+            - generic [ref=e41]:
+              - heading "Debug Information:" [level=4] [ref=e42]
+              - generic [ref=e43]: "Supabase URL: ✅ Configured Supabase Key: ✅ Configured"
+              - generic [ref=e44]:
+                - button "Test Dashboard Access" [ref=e45] [cursor=pointer]
+                - button "Check Auth Status" [ref=e46] [cursor=pointer]
+                - button "Environment Check" [ref=e47] [cursor=pointer]
+        - generic [ref=e48]:
+          - heading "Authentication Debugger" [level=3] [ref=e50]
+          - generic [ref=e51]:
+            - generic [ref=e52]:
+              - button "Check Auth State" [ref=e53] [cursor=pointer]
+              - button "Sign Out" [ref=e54] [cursor=pointer]
+              - button "Test Sign In" [ref=e55] [cursor=pointer]
+              - button "Test Profile Creation" [ref=e56] [cursor=pointer]
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - heading "Current State:" [level=4] [ref=e59]
+                - generic [ref=e60]: "{ \"user\": null, \"session\": null, \"userError\": { \"__isAuthError\": true, \"name\": \"AuthSessionMissingError\", \"status\": 400 }, \"sessionError\": null, \"timestamp\": \"2025-10-24T15:21:08.646Z\" }"
+              - generic [ref=e61]:
+                - heading "Environment Variables:" [level=4] [ref=e62]
+                - generic [ref=e63]:
+                  - generic [ref=e64]: "NEXT_PUBLIC_SUPABASE_URL: ✅ Set"
+                  - generic [ref=e65]: "NEXT_PUBLIC_SUPABASE_ANON_KEY: ✅ Set"
+              - generic [ref=e66]:
+                - heading "Browser Info:" [level=4] [ref=e67]
+                - generic [ref=e68]:
+                  - generic [ref=e69]: "URL: http://localhost:3000/login"
+                  - generic [ref=e70]: "Cookies:"
+                  - generic [ref=e71]: "User Agent: Mozilla/5.0 (Linux; Android 11; Pixel 5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.7390.37 Mobile Safari/537.36"
 ```

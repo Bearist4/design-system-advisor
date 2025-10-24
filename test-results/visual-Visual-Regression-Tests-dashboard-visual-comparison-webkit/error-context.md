@@ -2,62 +2,62 @@
 
 ```yaml
 - generic [active] [ref=e1]:
-  - generic [ref=e2]:
-    - navigation "Main navigation" [ref=e3]:
-      - heading "Design System Advisor" [level=1] [ref=e6]
-    - main [ref=e7]:
-      - generic [ref=e8]:
-        - generic [ref=e9]:
-          - generic [ref=e10]:
-            - heading "Design System Advisor" [level=3] [ref=e11]
-            - paragraph [ref=e12]: Sign in to your account
-          - generic [ref=e13]:
-            - generic [ref=e14]:
-              - generic [ref=e15]:
+  - button "Open Next.js Dev Tools" [ref=e7] [cursor=pointer]:
+    - img [ref=e8]
+  - alert [ref=e13]
+  - generic [ref=e14]:
+    - navigation "Main navigation" [ref=e15]:
+      - heading "Design System Advisor" [level=1] [ref=e18]
+    - main [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - heading "Design System Advisor" [level=3] [ref=e23]
+            - paragraph [ref=e24]: Sign in to your account
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - generic [ref=e27]:
                 - text: Email
-                - textbox "Email" [ref=e16]:
+                - textbox "Email" [ref=e28]:
                   - /placeholder: Enter your email
-              - generic [ref=e17]:
+              - generic [ref=e29]:
                 - text: Password
-                - textbox "Password" [ref=e18]:
+                - textbox "Password" [ref=e30]:
                   - /placeholder: Enter your password
-              - button "Sign In" [ref=e19] [cursor=pointer]
-            - generic [ref=e24]: Or continue with
-            - button "GitHub" [ref=e25] [cursor=pointer]:
-              - img [ref=e26]
+              - button "Sign In" [ref=e31] [cursor=pointer]
+            - generic [ref=e36]: Or continue with
+            - button "GitHub" [ref=e37] [cursor=pointer]:
+              - img [ref=e38]
               - text: GitHub
-            - button "Don't have an account? Sign up" [ref=e30] [cursor=pointer]
-            - generic [ref=e31]:
-              - heading "Debug Information:" [level=4] [ref=e32]
-              - generic [ref=e33]: "Supabase URL: ✅ Configured Supabase Key: ✅ Configured"
-              - generic [ref=e34]:
-                - button "Test Dashboard Access" [ref=e35] [cursor=pointer]
-                - button "Check Auth Status" [ref=e36] [cursor=pointer]
-                - button "Environment Check" [ref=e37] [cursor=pointer]
-        - generic [ref=e38]:
-          - heading "Authentication Debugger" [level=3] [ref=e40]
-          - generic [ref=e41]:
-            - generic [ref=e42]:
-              - button "Check Auth State" [ref=e43] [cursor=pointer]
-              - button "Sign Out" [ref=e44] [cursor=pointer]
-              - button "Test Sign In" [ref=e45] [cursor=pointer]
-              - button "Test Profile Creation" [ref=e46] [cursor=pointer]
-            - generic [ref=e47]:
-              - generic [ref=e48]:
-                - heading "Current State:" [level=4] [ref=e49]
-                - generic [ref=e50]: "{ \"user\": null, \"session\": null, \"userError\": { \"__isAuthError\": true, \"name\": \"AuthSessionMissingError\", \"status\": 400 }, \"sessionError\": null, \"timestamp\": \"2025-10-24T12:15:55.703Z\" }"
-              - generic [ref=e51]:
-                - heading "Environment Variables:" [level=4] [ref=e52]
-                - generic [ref=e53]:
-                  - generic [ref=e54]: "NEXT_PUBLIC_SUPABASE_URL: ✅ Set"
-                  - generic [ref=e55]: "NEXT_PUBLIC_SUPABASE_ANON_KEY: ✅ Set"
-              - generic [ref=e56]:
-                - heading "Browser Info:" [level=4] [ref=e57]
-                - generic [ref=e58]:
-                  - generic [ref=e59]: "URL: http://localhost:3000/login"
-                  - generic [ref=e60]: "Cookies:"
-                  - generic [ref=e61]: "User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15"
-  - button "Open Next.js Dev Tools" [ref=e67] [cursor=pointer]:
-    - img [ref=e68]
-  - alert [ref=e73]
+            - button "Don't have an account? Sign up" [ref=e42] [cursor=pointer]
+            - generic [ref=e43]:
+              - heading "Debug Information:" [level=4] [ref=e44]
+              - generic [ref=e45]: "Supabase URL: ✅ Configured Supabase Key: ✅ Configured"
+              - generic [ref=e46]:
+                - button "Test Dashboard Access" [ref=e47] [cursor=pointer]
+                - button "Check Auth Status" [ref=e48] [cursor=pointer]
+                - button "Environment Check" [ref=e49] [cursor=pointer]
+        - generic [ref=e50]:
+          - heading "Authentication Debugger" [level=3] [ref=e52]
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - button "Check Auth State" [ref=e55] [cursor=pointer]
+              - button "Sign Out" [ref=e56] [cursor=pointer]
+              - button "Test Sign In" [ref=e57] [cursor=pointer]
+              - button "Test Profile Creation" [ref=e58] [cursor=pointer]
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - heading "Current State:" [level=4] [ref=e61]
+                - generic [ref=e62]: "{ \"user\": null, \"session\": null, \"userError\": { \"__isAuthError\": true, \"name\": \"AuthSessionMissingError\", \"status\": 400 }, \"sessionError\": null, \"timestamp\": \"2025-10-24T15:21:02.778Z\" }"
+              - generic [ref=e63]:
+                - heading "Environment Variables:" [level=4] [ref=e64]
+                - generic [ref=e65]:
+                  - generic [ref=e66]: "NEXT_PUBLIC_SUPABASE_URL: ✅ Set"
+                  - generic [ref=e67]: "NEXT_PUBLIC_SUPABASE_ANON_KEY: ✅ Set"
+              - generic [ref=e68]:
+                - heading "Browser Info:" [level=4] [ref=e69]
+                - generic [ref=e70]:
+                  - generic [ref=e71]: "URL: http://localhost:3000/login"
+                  - generic [ref=e72]: "Cookies:"
+                  - generic [ref=e73]: "User Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15"
 ```

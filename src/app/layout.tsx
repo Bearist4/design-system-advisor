@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/contexts/ThemeContext";
+import { ToastProvider } from "@/contexts/ToastContext";
+import { NotificationProvider } from "@/contexts/NotificationContext";
 import { ScreenReaderAnnouncer, SkipToContent } from "@/lib/accessibility";
 import { MainLayout } from "@/components/layout/MainLayout";
 
@@ -33,9 +35,13 @@ export default function RootLayout({
         <SkipToContent />
         <ScreenReaderAnnouncer />
         <ThemeProvider>
-          <MainLayout>
-            {children}
-          </MainLayout>
+          <ToastProvider>
+            <NotificationProvider>
+              <MainLayout>
+                {children}
+              </MainLayout>
+            </NotificationProvider>
+          </ToastProvider>
         </ThemeProvider>
       </body>
     </html>

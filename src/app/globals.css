@@ -25,14 +25,14 @@
   --input: 214.3 31.8% 91.4%;
   --ring: 221.2 83.2% 53.3%;
   
-  /* Status Colors */
-  --success: 142 76% 36%;
+  /* Status Colors - Distinct and less saturated */
+  --success: 120 50% 40%;
   --success-foreground: 0 0% 100%;
-  --warning: 38 92% 50%;
-  --warning-foreground: 0 0% 100%;
-  --error: 0 84% 60%;
+  --warning: 38 70% 50%;
+  --warning-foreground: 0 0% 0%;
+  --error: 0 60% 50%;
   --error-foreground: 0 0% 100%;
-  --info: 199 89% 48%;
+  --info: 210 50% 50%;
   --info-foreground: 0 0% 100%;
   
   /* Brand Colors - Primary Scale */
@@ -170,60 +170,60 @@
 
 .dark {
   /* ========== DARK MODE COLOR TOKENS ========== */
-  /* Semantic Colors */
-  --background: 222.2 84% 4.9%;
+  /* Near-black backgrounds with tonal ramp */
+  --background: 220 13% 9%;
   --foreground: 210 40% 98%;
-  --card: 222.2 84% 4.9%;
+  --card: 220 13% 11%;
   --card-foreground: 210 40% 98%;
-  --popover: 222.2 84% 4.9%;
+  --popover: 220 13% 11%;
   --popover-foreground: 210 40% 98%;
-  --primary: 217.2 91.2% 59.8%;
-  --primary-foreground: 222.2 84% 4.9%;
-  --secondary: 217.2 32.6% 17.5%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 220 13% 9%;
+  --secondary: 220 13% 18%;
   --secondary-foreground: 210 40% 98%;
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
-  --accent: 217.2 32.6% 17.5%;
+  --muted: 220 13% 18%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 220 13% 18%;
   --accent-foreground: 210 40% 98%;
-  --destructive: 0 62.8% 30.6%;
+  --destructive: 0 63% 31%;
   --destructive-foreground: 210 40% 98%;
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
-  --ring: 224.3 76.3% 94.1%;
+  --border: 220 13% 18%;
+  --input: 220 13% 18%;
+  --ring: 217 91% 60%;
   
-  /* Status Colors - Adjusted for dark mode */
-  --success: 142 71% 45%;
-  --success-foreground: 0 0% 100%;
-  --warning: 38 92% 50%;
-  --warning-foreground: 0 0% 0%;
-  --error: 0 72% 51%;
-  --error-foreground: 0 0% 100%;
-  --info: 199 89% 48%;
-  --info-foreground: 0 0% 100%;
+  /* Status Colors - Distinct and less saturated for dark mode */
+  --success: 120 45% 50%;
+  --success-foreground: 220 13% 9%;
+  --warning: 38 60% 55%;
+  --warning-foreground: 220 13% 9%;
+  --error: 0 55% 55%;
+  --error-foreground: 210 40% 98%;
+  --info: 210 45% 55%;
+  --info-foreground: 220 13% 9%;
   
-  /* Brand Colors - Primary Scale (Dark Mode) */
-  --primary-50: 224 64% 33%;
-  --primary-100: 226 71% 40%;
-  --primary-200: 224 76% 48%;
-  --primary-300: 221 83% 53%;
-  --primary-400: 217 91% 60%;
-  --primary-500: 213 94% 68%;
-  --primary-600: 212 96% 78%;
-  --primary-700: 213 97% 87%;
-  --primary-800: 214 95% 93%;
-  --primary-900: 214 100% 97%;
+  /* Brand Colors - Primary Scale (Dark Mode with smooth tonal ramp) */
+  --primary-50: 217 91% 12%;
+  --primary-100: 217 91% 18%;
+  --primary-200: 217 91% 24%;
+  --primary-300: 217 91% 30%;
+  --primary-400: 217 91% 36%;
+  --primary-500: 217 91% 42%;
+  --primary-600: 217 91% 48%;
+  --primary-700: 217 91% 54%;
+  --primary-800: 217 91% 60%;
+  --primary-900: 217 91% 66%;
   
-  /* Neutral Colors - Gray Scale (Dark Mode) */
-  --neutral-50: 222 47% 11%;
-  --neutral-100: 217 33% 17%;
-  --neutral-200: 215 25% 27%;
-  --neutral-300: 215 19% 35%;
-  --neutral-400: 215 16% 47%;
-  --neutral-500: 215 20% 65%;
-  --neutral-600: 213 27% 84%;
-  --neutral-700: 214 32% 91%;
-  --neutral-800: 210 40% 96%;
-  --neutral-900: 210 40% 98%;
+  /* Neutral Colors - Gray Scale (Dark Mode with smooth tonal ramp) */
+  --neutral-50: 220 13% 9%;
+  --neutral-100: 220 13% 12%;
+  --neutral-200: 220 13% 15%;
+  --neutral-300: 220 13% 18%;
+  --neutral-400: 220 13% 21%;
+  --neutral-500: 220 13% 24%;
+  --neutral-600: 220 13% 27%;
+  --neutral-700: 220 13% 30%;
+  --neutral-800: 220 13% 33%;
+  --neutral-900: 220 13% 36%;
   
   /* ========== DARK MODE SHADOW TOKENS ========== */
   --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
@@ -233,6 +233,41 @@
   --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.4), 0 8px 10px -6px rgb(0 0 0 / 0.4);
   --shadow-xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
   --shadow-2xl: 0 35px 60px -15px rgb(0 0 0 / 0.6);
+}
+
+/* ========== DARK MODE VARIANTS ========== */
+
+/* Warm Neutral Dark Mode */
+.dark.warm {
+  --background: 30 8% 9%;
+  --card: 30 8% 11%;
+  --secondary: 30 8% 18%;
+  --muted: 30 8% 18%;
+  --accent: 30 8% 18%;
+  --border: 30 8% 18%;
+  --input: 30 8% 18%;
+}
+
+/* Cool Neutral Dark Mode */
+.dark.cool {
+  --background: 220 13% 9%;
+  --card: 220 13% 11%;
+  --secondary: 220 13% 18%;
+  --muted: 220 13% 18%;
+  --accent: 220 13% 18%;
+  --border: 220 13% 18%;
+  --input: 220 13% 18%;
+}
+
+/* Branded-Tinted Dark Mode */
+.dark.branded {
+  --background: 217 20% 9%;
+  --card: 217 20% 11%;
+  --secondary: 217 20% 18%;
+  --muted: 217 20% 18%;
+  --accent: 217 20% 18%;
+  --border: 217 20% 18%;
+  --input: 217 20% 18%;
 }
 
 * {
@@ -593,4 +628,162 @@ select:focus-visible,
   padding-bottom: env(safe-area-inset-bottom);
   padding-left: env(safe-area-inset-left);
   padding-right: env(safe-area-inset-right);
+}
+
+/* ========== TOAST ACCESSIBILITY STYLES ========== */
+
+/* Ensure toast notifications meet WCAG AA contrast requirements */
+[role="alert"] {
+  /* High contrast focus for close button */
+  button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+  
+  /* Ensure text is readable */
+  .text-sm {
+    color: inherit;
+  }
+  
+  /* Improve contrast for description text */
+  .opacity-95 {
+    opacity: 1;
+  }
+}
+
+/* Toast container accessibility */
+.toast-viewport {
+  /* Ensure toasts are visible to screen readers */
+  z-index: var(--z-tooltip);
+}
+
+/* High contrast mode improvements for toasts */
+@media (prefers-contrast: high) {
+  [role="alert"] {
+    border-width: 2px;
+    border-style: solid;
+  }
+  
+  [role="alert"] button {
+    border: 1px solid currentColor;
+  }
+}
+
+/* ========== FEEDBACK COMPONENTS ACCESSIBILITY ========== */
+
+/* Status Indicator Accessibility */
+[role="status"] {
+  /* Ensure proper focus for close buttons */
+  button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Empty State Accessibility */
+[role="region"][aria-labelledby*="empty-state"] {
+  /* Ensure proper heading hierarchy */
+  h3 {
+    color: inherit;
+  }
+  
+  /* Improve action button accessibility */
+  [role="group"] button {
+    min-height: 44px; /* Touch target size */
+  }
+}
+
+/* Notification Panel Accessibility */
+[role="dialog"][aria-labelledby*="notification"] {
+  /* Ensure proper focus management */
+  &:focus {
+    outline: none;
+  }
+  
+  /* Improve notification item accessibility */
+  .notification-item {
+    position: relative;
+  }
+  
+  /* Better focus for notification actions */
+  button:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Loading Spinner Accessibility */
+[role="status"][aria-label*="Loading"] {
+  /* Ensure spinner is visible to screen readers */
+  .animate-spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .animate-spin {
+      animation: none;
+    }
+  }
+}
+
+/* Progress Bar Accessibility */
+[role="progressbar"] {
+  /* Ensure progress is announced */
+  &:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Enhanced focus management for feedback components */
+.feedback-component {
+  /* Ensure all interactive elements are keyboard accessible */
+  button, a, [tabindex] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve focus visibility */
+  *:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
+
+/* Screen reader only content for feedback components */
+.feedback-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* High contrast mode for all feedback components */
+@media (prefers-contrast: high) {
+  /* Status indicators */
+  [role="status"] {
+    border-width: 2px;
+    border-style: solid;
+  }
+  
+  /* Notification items */
+  .notification-item {
+    border: 1px solid currentColor;
+  }
+  
+  /* Progress bars */
+  [role="progressbar"] {
+    border: 2px solid currentColor;
+  }
+  
+  /* Empty states */
+  [role="region"] {
+    border: 1px solid currentColor;
+  }
 }

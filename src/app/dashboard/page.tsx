@@ -137,14 +137,15 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
+      <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60" aria-label="Main navigation">
+        <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl font-bold">Dashboard</h1>
-              <p className="text-muted-foreground">Manage your design tokens</p>
+            <div className="flex items-center space-x-4">
+              <h1 className="text-xl font-semibold">Design System Advisor</h1>
             </div>
-            <div className="flex items-center gap-3">
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center gap-3">
               {userContext && (
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <User className="h-4 w-4" />
@@ -175,7 +176,26 @@ export default function DashboardPage() {
                   Test RBAC
                 </Button>
               </Link>
+              <Button variant="outline" size="sm" onClick={handleSignOut}>
+                Sign Out
+              </Button>
             </div>
+            
+            {/* Mobile Navigation Menu */}
+            <div className="md:hidden" aria-label="Mobile navigation menu">
+              <Button variant="outline" size="sm" aria-label="Open mobile menu">
+                <User className="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+        </div>
+      </nav>
+      
+      <main className="container mx-auto px-4 py-8">
+        <div className="mb-8">
+          <div>
+            <h2 className="text-3xl font-bold">Dashboard</h2>
+            <p className="text-muted-foreground">Manage your design tokens</p>
           </div>
         </div>
 
@@ -331,7 +351,7 @@ export default function DashboardPage() {
             )}
           </CardContent>
         </Card>
-      </div>
+      </main>
     </div>
   )
 }

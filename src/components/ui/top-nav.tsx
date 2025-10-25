@@ -238,7 +238,7 @@ export function TopNav({ user, onSignOut }: TopNavProps) {
           {/* Search Bar - Desktop */}
           <div className="hidden md:flex flex-1 xl:flex-none xl:w-80 max-w-md" ref={searchRef}>
             <div className="relative w-full">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none z-10" />
               <Input
                 ref={searchInputRef}
                 type="search"
@@ -247,7 +247,7 @@ export function TopNav({ user, onSignOut }: TopNavProps) {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSearchOpen(true)}
                 onKeyDown={handleSearchKeyDown}
-                className="pl-9 pr-4"
+                className="!pl-10 !pr-4"
                 aria-label="Search"
                 aria-expanded={isSearchOpen && searchResults.length > 0}
                 aria-controls="search-results"
@@ -408,16 +408,15 @@ export function TopNav({ user, onSignOut }: TopNavProps) {
                 <Button
                   variant="ghost"
                   size="sm"
+                  icon={User}
+                  iconPosition="left"
                   onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
                   className="gap-2"
                   aria-label="User menu"
                   aria-expanded={isUserMenuOpen}
                 >
-                  <div className="h-7 w-7 rounded-full bg-primary/10 flex items-center justify-center">
-                    <User className="h-4 w-4" />
-                  </div>
                   <span className="hidden lg:inline text-sm max-w-[120px] truncate">
-                    {user.user_metadata?.full_name || user.email}
+                    Hi, {user.user_metadata?.full_name?.split(' ')[0] || 'User'}
                   </span>
                 </Button>
 
@@ -425,12 +424,19 @@ export function TopNav({ user, onSignOut }: TopNavProps) {
                 {isUserMenuOpen && (
                   <div className="absolute right-0 top-full mt-2 w-56 bg-popover border rounded-md shadow-lg overflow-hidden z-dropdown">
                     <div className="p-4 border-b">
-                      <p className="font-medium text-sm truncate">
-                        {user.user_metadata?.full_name || 'User'}
-                      </p>
-                      <p className="text-xs text-muted-foreground truncate mt-1">
-                        {user.email}
-                      </p>
+                      <div className="flex items-center gap-3">
+                        <div className="h-8 w-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                          <User className="h-4 w-4" />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <p className="font-medium text-sm truncate">
+                            {user.user_metadata?.full_name || 'User'}
+                          </p>
+                          <p className="text-xs text-muted-foreground truncate">
+                            {user.email}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                     
                     <div className="py-2">
@@ -527,7 +533,7 @@ export function TopNav({ user, onSignOut }: TopNavProps) {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={handleSearchKeyDown}
-                  className="pl-9"
+                  className="!pl-10"
                   autoFocus
                 />
               </div>

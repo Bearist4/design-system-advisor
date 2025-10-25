@@ -4,11 +4,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   // Turbopack configuration
   turbopack: {
+    root: '/Users/bearista/dsa/design-system-advisor',
     rules: {
       '*.svg': {
         loaders: ['@svgr/webpack'],

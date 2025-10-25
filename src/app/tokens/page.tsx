@@ -7,7 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Search, FileText, Calendar } from 'lucide-react'
+import { LoadingSpinner, EmptyState, StatusDot } from '@/components/ui/feedback'
+import { Search, FileText, Calendar, Upload, Filter, X, Eye, Download } from 'lucide-react'
 import Link from 'next/link'
 // import { useRouter } from 'next/navigation' // Unused for now
 
@@ -75,8 +76,8 @@ export default function TokensPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-2 text-muted-foreground">Loading...</p>
+          <LoadingSpinner size="lg" className="mx-auto mb-4" />
+          <p className="mt-2 text-muted-foreground">Loading tokens...</p>
         </div>
       </div>
     )
@@ -86,13 +87,24 @@ export default function TokensPage() {
     <div className="min-h-screen bg-background">
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold">All Tokens</h1>
-          <p className="text-muted-foreground">Browse and manage your design token files</p>
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-3xl font-bold">All Tokens</h1>
+              <p className="text-muted-foreground">Browse and manage your design token files</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <StatusDot variant="success" />
+              <span className="text-sm text-muted-foreground">{tokens.length} files</span>
+            </div>
+          </div>
         </div>
 
         <Card className="mb-6">
           <CardHeader>
-            <CardTitle>Filters</CardTitle>
+            <div className="flex items-center gap-2">
+              <Filter className="h-4 w-4" />
+              <CardTitle>Filters</CardTitle>
+            </div>
             <CardDescription>Search and filter your token files</CardDescription>
           </CardHeader>
           <CardContent>
@@ -106,6 +118,16 @@ export default function TokensPage() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="pl-10"
                   />
+                  {searchTerm && (
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      icon={X}
+                      iconOnly
+                      onClick={() => setSearchTerm('')}
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 h-6 w-6"
+                    />
+                  )}
                 </div>
               </div>
               <div className="flex gap-2 flex-wrap">
@@ -117,11 +139,42 @@ export default function TokensPage() {
                     onClick={() => setSelectedCategory(category)}
                     className="capitalize"
                   >
-                    {category}
+                    {category === 'all' ? 'All' : category}
                   </Button>
                 ))}
               </div>
             </div>
+            {(searchTerm || selectedCategory !== 'all') && (
+              <div className="flex items-center gap-2 mt-4 pt-4 border-t">
+                <span className="text-sm text-muted-foreground">Active filters:</span>
+                {searchTerm && (
+                  <Badge variant="secondary" className="flex items-center gap-1">
+                    Search: "{searchTerm}"
+                    <Button
+                      variant="ghost"
+                      size="xs"
+                      icon={X}
+                      iconOnly
+                      onClick={() => setSearchTerm('')}
+                      className="h-4 w-4 p-0"
+                    />
+                  </Badge>
+                )}
+                {selectedCategory !== 'all' && (
+                  <Badge variant="secondary" className="flex items-center gap-1">
+                    Category: {selectedCategory}
+                    <Button
+                      variant="ghost"
+                      size="xs"
+                      icon={X}
+                      iconOnly
+                      onClick={() => setSelectedCategory('all')}
+                      className="h-4 w-4 p-0"
+                    />
+                  </Badge>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
 
@@ -135,7 +188,7 @@ export default function TokensPage() {
                 </CardDescription>
               </div>
               <Link href="/upload">
-                <Button>
+                <Button icon={Upload} iconPosition="left">
                   Upload New Tokens
                 </Button>
               </Link>
@@ -143,25 +196,24 @@ export default function TokensPage() {
           </CardHeader>
           <CardContent>
             {filteredTokens.length === 0 ? (
-              <div className="text-center py-8">
-                <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">
-                  {tokens.length === 0 ? 'No tokens uploaded yet' : 'No tokens match your filters'}
-                </h3>
-                <p className="text-muted-foreground mb-4">
-                  {tokens.length === 0 
-                    ? 'Upload your first design token file to get started'
-                    : 'Try adjusting your search or filter criteria'
+              <EmptyState
+                icon={tokens.length === 0 ? "file" : "search"}
+                title={tokens.length === 0 ? 'No tokens uploaded yet' : 'No tokens match your filters'}
+                description={tokens.length === 0 
+                  ? 'Upload your first design token file to get started'
+                  : 'Try adjusting your search or filter criteria'
+                }
+                action={tokens.length === 0 ? {
+                  label: "Upload Tokens",
+                  onClick: () => window.location.href = '/upload'
+                } : {
+                  label: "Clear Filters",
+                  onClick: () => {
+                    setSearchTerm('')
+                    setSelectedCategory('all')
                   }
-                </p>
-                {tokens.length === 0 && (
-                  <Link href="/upload">
-                    <Button>
-                      Upload Tokens
-                    </Button>
-                  </Link>
-                )}
-              </div>
+                }}
+              />
             ) : (
               <Table>
                 <TableHeader>
@@ -187,12 +239,22 @@ export default function TokensPage() {
                         </div>
                       </TableCell>
                       <TableCell>
-                        {JSON.stringify(token.token_data).length} chars
+                        <div className="flex items-center gap-2">
+                          <span className="text-sm">{JSON.stringify(token.token_data).length} chars</span>
+                          <StatusDot variant="success" />
+                        </div>
                       </TableCell>
                       <TableCell>
-                        <Link href={`/tokens/${token.id}`}>
-                          <Button variant="outline" size="sm">View</Button>
-                        </Link>
+                        <div className="flex items-center gap-2">
+                          <Link href={`/tokens/${token.id}`}>
+                            <Button variant="outline" size="sm" icon={Eye} iconPosition="left">
+                              View
+                            </Button>
+                          </Link>
+                          <Button variant="ghost" size="sm" icon={Download} iconOnly>
+                            Download
+                          </Button>
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}

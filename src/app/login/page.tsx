@@ -6,7 +6,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Github } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { LoadingSpinner, StatusDot } from '@/components/ui/feedback'
+import { Github, Mail, Lock, Eye, EyeOff, CheckCircle, AlertCircle } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import AuthDebugger from '@/components/AuthDebugger'
 import { ensureUserProfile } from '@/lib/user-profile-client'
@@ -17,6 +19,9 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const [isSignUp, setIsSignUp] = useState(false)
   const [debugInfo, setDebugInfo] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [emailValid, setEmailValid] = useState(false)
+  const [passwordValid, setPasswordValid] = useState(false)
   const router = useRouter()
 
   useEffect(() => {
@@ -29,6 +34,17 @@ Supabase URL: ${supabaseUrl ? '✅ Configured' : '❌ Missing'}
 Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
     `.trim())
   }, [])
+
+  // Email validation
+  useEffect(() => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    setEmailValid(emailRegex.test(email))
+  }, [email])
+
+  // Password validation
+  useEffect(() => {
+    setPasswordValid(password.length >= 6)
+  }, [password])
 
   const handleEmailAuth = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -228,7 +244,13 @@ Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
         <CardContent className="space-y-4">
           <form onSubmit={handleEmailAuth} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="flex items-center gap-2">
+                <Mail className="h-4 w-4" />
+                Email
+                {email && (
+                  <StatusDot variant={emailValid ? "success" : "error"} />
+                )}
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -236,21 +258,58 @@ Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                className={email && !emailValid ? "border-red-500" : ""}
               />
+              {email && !emailValid && (
+                <p className="text-xs text-red-500 flex items-center gap-1">
+                  <AlertCircle className="h-3 w-3" />
+                  Please enter a valid email address
+                </p>
+              )}
             </div>
             <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
+              <Label htmlFor="password" className="flex items-center gap-2">
+                <Lock className="h-4 w-4" />
+                Password
+                {password && (
+                  <StatusDot variant={passwordValid ? "success" : "error"} />
+                )}
+              </Label>
+              <div className="relative">
+                <Input
+                  id="password"
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  className={password && !passwordValid ? "border-red-500 pr-10" : "pr-10"}
+                />
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  icon={showPassword ? EyeOff : Eye}
+                  iconOnly
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-0 top-0 h-full px-3 py-2 hover:bg-transparent"
+                />
+              </div>
+              {password && !passwordValid && (
+                <p className="text-xs text-red-500 flex items-center gap-1">
+                  <AlertCircle className="h-3 w-3" />
+                  Password must be at least 6 characters
+                </p>
+              )}
             </div>
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Loading...' : (isSignUp ? 'Sign Up' : 'Sign In')}
+            <Button 
+              type="submit" 
+              className="w-full" 
+              disabled={isLoading || !emailValid || !passwordValid}
+              isLoading={isLoading}
+              loadingText={isSignUp ? 'Creating Account...' : 'Signing In...'}
+            >
+              {isSignUp ? 'Sign Up' : 'Sign In'}
             </Button>
           </form>
 
@@ -268,8 +327,11 @@ Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
             className="w-full"
             onClick={handleGitHubAuth}
             disabled={isLoading}
+            icon={Github}
+            iconPosition="left"
+            isLoading={isLoading}
+            loadingText="Connecting to GitHub..."
           >
-            <Github className="mr-2 h-4 w-4" />
             GitHub
           </Button>
 
@@ -286,13 +348,18 @@ Supabase Key: ${supabaseKey ? '✅ Configured' : '❌ Missing'}
 
           {/* Debug Information */}
           <div className="mt-4 p-3 bg-muted rounded-md">
-            <h4 className="text-sm font-medium mb-2">Debug Information:</h4>
+            <div className="flex items-center gap-2 mb-2">
+              <h4 className="text-sm font-medium">Debug Information:</h4>
+              <Badge variant="outline" className="text-xs">Development</Badge>
+            </div>
             <pre className="text-xs text-muted-foreground whitespace-pre-wrap">{debugInfo}</pre>
-            <div className="mt-2 space-x-2">
+            <div className="mt-2 flex flex-wrap gap-2">
               <Button 
                 variant="outline" 
                 size="sm" 
                 onClick={() => window.location.href = '/dashboard'}
+                icon={CheckCircle}
+                iconPosition="left"
               >
                 Test Dashboard Access
               </Button>

@@ -6,7 +6,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
-import { Upload, FileText, Calendar, User, Settings, Shield, Building, Users } from 'lucide-react'
+import { LoadingSpinner, StatusIndicator, StatusDot, EmptyState } from '@/components/ui/feedback'
+import { Upload, FileText, Calendar, User, Settings, Shield, Building, Users, TrendingUp, Clock, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { getUserContext } from '@/lib/rbac-client'
@@ -113,7 +114,7 @@ export default function DashboardPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <LoadingSpinner size="lg" className="mx-auto mb-4" />
           <p className="mt-2 text-muted-foreground">Loading dashboard...</p>
           <p className="mt-1 text-xs text-muted-foreground">Please wait while we set up your dashboard</p>
         </div>
@@ -124,13 +125,15 @@ export default function DashboardPage() {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Authentication Required</h2>
-          <p className="text-muted-foreground mb-4">Please log in to access your dashboard</p>
-          <Button onClick={() => router.push('/login')}>
-            Go to Login
-          </Button>
-        </div>
+        <EmptyState
+          icon="error"
+          title="Authentication Required"
+          description="Please log in to access your dashboard"
+          action={{
+            label: "Go to Login",
+            onClick: () => router.push('/login')
+          }}
+        />
       </div>
     )
   }
@@ -160,11 +163,17 @@ export default function DashboardPage() {
                   {userContext.current_org?.slug || 'Not assigned to any organization'}
                 </p>
                 {userContext.role_in_current_org && (
-                  <Badge variant="outline" className="mt-2">
-                    {userContext.role_in_current_org === 'owner' ? 'Owner' :
-                     userContext.role_in_current_org === 'editor' ? 'Editor' :
-                     'Viewer'}
-                  </Badge>
+                  <div className="flex items-center gap-2 mt-2">
+                    <StatusDot 
+                      variant={userContext.role_in_current_org === 'owner' ? 'success' : 
+                              userContext.role_in_current_org === 'editor' ? 'warning' : 'info'} 
+                    />
+                    <Badge variant="outline">
+                      {userContext.role_in_current_org === 'owner' ? 'Owner' :
+                       userContext.role_in_current_org === 'editor' ? 'Editor' :
+                       'Viewer'}
+                    </Badge>
+                  </div>
                 )}
               </CardContent>
             </Card>
@@ -174,10 +183,16 @@ export default function DashboardPage() {
                 <CardTitle className="text-sm font-medium">Organizations</CardTitle>
                 <Users className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{userContext.organizations.length}</div>
-                <p className="text-xs text-muted-foreground">Organizations you belong to</p>
-              </CardContent>
+            <CardContent>
+              <div className="text-2xl font-bold">{userContext.organizations.length}</div>
+              <p className="text-xs text-muted-foreground">Organizations you belong to</p>
+              {userContext.organizations.length > 0 && (
+                <div className="flex items-center gap-1 mt-2">
+                  <StatusDot variant="success" />
+                  <span className="text-xs text-green-600 dark:text-green-400">Active</span>
+                </div>
+              )}
+            </CardContent>
             </Card>
 
             <Card>
@@ -185,12 +200,20 @@ export default function DashboardPage() {
                 <CardTitle className="text-sm font-medium">Permissions</CardTitle>
                 <Shield className="h-4 w-4 text-muted-foreground" />
               </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">{userContext.permissions.length}</div>
-                <p className="text-xs text-muted-foreground">
-                  {userContext.permissions.includes('*') ? 'All permissions' : 'Specific permissions'}
-                </p>
-              </CardContent>
+            <CardContent>
+              <div className="text-2xl font-bold">{userContext.permissions.length}</div>
+              <p className="text-xs text-muted-foreground">
+                {userContext.permissions.includes('*') ? 'All permissions' : 'Specific permissions'}
+              </p>
+              <div className="flex items-center gap-1 mt-2">
+                <StatusDot 
+                  variant={userContext.permissions.includes('*') ? 'success' : 'warning'} 
+                />
+                <span className="text-xs text-muted-foreground">
+                  {userContext.permissions.includes('*') ? 'Full access' : 'Limited access'}
+                </span>
+              </div>
+            </CardContent>
             </Card>
           </div>
         )}
@@ -204,6 +227,12 @@ export default function DashboardPage() {
             <CardContent>
               <div className="text-2xl font-bold">{tokens.length}</div>
               <p className="text-xs text-muted-foreground">Token files uploaded</p>
+              {tokens.length > 0 && (
+                <div className="flex items-center gap-1 mt-2">
+                  <TrendingUp className="h-3 w-3 text-green-600 dark:text-green-400" />
+                  <span className="text-xs text-green-600 dark:text-green-400">Growing</span>
+                </div>
+              )}
             </CardContent>
           </Card>
 
@@ -217,6 +246,18 @@ export default function DashboardPage() {
                 {new Set(tokens.map(t => t.category)).size}
               </div>
               <p className="text-xs text-muted-foreground">Different categories</p>
+              <div className="flex flex-wrap gap-1 mt-2">
+                {Array.from(new Set(tokens.map(t => t.category))).slice(0, 3).map(category => (
+                  <Badge key={category} variant={category as any} className="text-xs">
+                    {category}
+                  </Badge>
+                ))}
+                {new Set(tokens.map(t => t.category)).size > 3 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{new Set(tokens.map(t => t.category)).size - 3} more
+                  </Badge>
+                )}
+              </div>
             </CardContent>
           </Card>
 
@@ -230,6 +271,14 @@ export default function DashboardPage() {
                 {tokens.length > 0 ? new Date(tokens[0].created_at).toLocaleDateString() : 'None'}
               </div>
               <p className="text-xs text-muted-foreground">Latest upload date</p>
+              {tokens.length > 0 && (
+                <div className="flex items-center gap-1 mt-2">
+                  <Clock className="h-3 w-3 text-blue-600 dark:text-blue-400" />
+                  <span className="text-xs text-blue-600 dark:text-blue-400">
+                    {new Date(tokens[0].created_at).toLocaleTimeString()}
+                  </span>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>
@@ -242,8 +291,7 @@ export default function DashboardPage() {
                 <CardDescription>Your uploaded design token files</CardDescription>
               </div>
               <Link href="/upload">
-                <Button>
-                  <Upload className="mr-2 h-4 w-4" />
+                <Button icon={Upload} iconPosition="left">
                   Upload Tokens
                 </Button>
               </Link>
@@ -251,19 +299,15 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             {tokens.length === 0 ? (
-              <div className="text-center py-8">
-                <FileText className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold mb-2">No tokens uploaded yet</h3>
-                <p className="text-muted-foreground mb-4">
-                  Upload your first design token file to get started
-                </p>
-                <Link href="/upload">
-                  <Button>
-                    <Upload className="mr-2 h-4 w-4" />
-                    Upload Tokens
-                  </Button>
-                </Link>
-              </div>
+              <EmptyState
+                icon="file"
+                title="No tokens uploaded yet"
+                description="Upload your first design token file to get started"
+                action={{
+                  label: "Upload Tokens",
+                  onClick: () => router.push('/upload')
+                }}
+              />
             ) : (
               <Table>
                 <TableHeader>
@@ -285,9 +329,12 @@ export default function DashboardPage() {
                         {new Date(token.created_at).toLocaleDateString()}
                       </TableCell>
                       <TableCell>
-                        <Link href={`/tokens/${token.id}`}>
-                          <Button variant="outline" size="sm">View</Button>
-                        </Link>
+                        <div className="flex items-center gap-2">
+                          <Link href={`/tokens/${token.id}`}>
+                            <Button variant="outline" size="sm">View</Button>
+                          </Link>
+                          <StatusDot variant="success" />
+                        </div>
                       </TableCell>
                     </TableRow>
                   ))}

@@ -7,7 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { ArrowLeft, User, Mail, Calendar, Shield, Building, Users, Settings } from 'lucide-react'
+import { LoadingSpinner, StatusDot, EmptyState } from '@/components/ui/feedback'
+import { ArrowLeft, User, Mail, Calendar, Shield, Building, Users, Settings, Edit, Save, X, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { getUserContext } from '@/lib/rbac-client'
@@ -189,7 +190,7 @@ export default function ProfilePage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <LoadingSpinner size="lg" className="mx-auto mb-4" />
           <p className="mt-2 text-muted-foreground">Loading profile...</p>
         </div>
       </div>
@@ -199,13 +200,15 @@ export default function ProfilePage() {
   if (!user || !profile || !userContext) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Profile Not Found</h2>
-          <p className="text-muted-foreground mb-4">Unable to load your profile information</p>
-          <Button onClick={() => router.push('/dashboard')}>
-            Return to Dashboard
-          </Button>
-        </div>
+        <EmptyState
+          icon="error"
+          title="Profile Not Found"
+          description="Unable to load your profile information"
+          action={{
+            label: "Return to Dashboard",
+            onClick: () => router.push('/dashboard')
+          }}
+        />
       </div>
     )
   }
@@ -216,8 +219,7 @@ export default function ProfilePage() {
         <div className="mb-8">
           <div className="flex items-center gap-4 mb-4">
             <Link href="/dashboard">
-              <Button variant="outline" size="sm">
-                <ArrowLeft className="h-4 w-4 mr-2" />
+              <Button variant="outline" size="sm" icon={ArrowLeft} iconPosition="left">
                 Back to Dashboard
               </Button>
             </Link>
@@ -246,8 +248,9 @@ export default function ProfilePage() {
                       variant="outline" 
                       size="sm"
                       onClick={() => setIsEditing(true)}
+                      icon={Edit}
+                      iconPosition="left"
                     >
-                      <Settings className="h-4 w-4 mr-2" />
                       Edit Profile
                     </Button>
                   )}
@@ -279,8 +282,12 @@ export default function ProfilePage() {
                       <Button 
                         onClick={handleSaveProfile}
                         disabled={saving}
+                        icon={Save}
+                        iconPosition="left"
+                        isLoading={saving}
+                        loadingText="Saving..."
                       >
-                        {saving ? 'Saving...' : 'Save Changes'}
+                        Save Changes
                       </Button>
                       <Button 
                         variant="outline"
@@ -291,6 +298,8 @@ export default function ProfilePage() {
                             email: profile.email
                           })
                         }}
+                        icon={X}
+                        iconPosition="left"
                       >
                         Cancel
                       </Button>
@@ -300,37 +309,45 @@ export default function ProfilePage() {
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <Mail className="h-4 w-4 text-muted-foreground" />
-                      <div>
+                      <div className="flex-1">
                         <p className="text-sm font-medium">Email</p>
                         <p className="text-sm text-muted-foreground">{profile.email}</p>
                       </div>
+                      <StatusDot variant="success" />
                     </div>
                     <div className="flex items-center gap-3">
                       <User className="h-4 w-4 text-muted-foreground" />
-                      <div>
+                      <div className="flex-1">
                         <p className="text-sm font-medium">Full Name</p>
                         <p className="text-sm text-muted-foreground">
                           {profile.full_name || 'Not provided'}
                         </p>
                       </div>
+                      {profile.full_name ? (
+                        <StatusDot variant="success" />
+                      ) : (
+                        <StatusDot variant="warning" />
+                      )}
                     </div>
                     <div className="flex items-center gap-3">
                       <Calendar className="h-4 w-4 text-muted-foreground" />
-                      <div>
+                      <div className="flex-1">
                         <p className="text-sm font-medium">Member Since</p>
                         <p className="text-sm text-muted-foreground">
                           {new Date(profile.created_at).toLocaleDateString()}
                         </p>
                       </div>
+                      <StatusDot variant="info" />
                     </div>
                     <div className="flex items-center gap-3">
                       <Shield className="h-4 w-4 text-muted-foreground" />
-                      <div>
+                      <div className="flex-1">
                         <p className="text-sm font-medium">Role</p>
                         <Badge variant={getRoleBadgeVariant(profile.role)}>
                           {getRoleDisplayName(profile.role)}
                         </Badge>
                       </div>
+                      <StatusDot variant="success" />
                     </div>
                   </div>
                 )}
@@ -357,11 +374,14 @@ export default function ProfilePage() {
                         {userContext.current_org.slug}
                       </p>
                     </div>
-                    {userContext.role_in_current_org && (
-                      <Badge variant={getRoleBadgeVariant(`org_${userContext.role_in_current_org}`)}>
-                        {getRoleDisplayName(`org_${userContext.role_in_current_org}`)}
-                      </Badge>
-                    )}
+                    <div className="flex items-center gap-2">
+                      {userContext.role_in_current_org && (
+                        <Badge variant={getRoleBadgeVariant(`org_${userContext.role_in_current_org}`)}>
+                          {getRoleDisplayName(`org_${userContext.role_in_current_org}`)}
+                        </Badge>
+                      )}
+                      <StatusDot variant="success" />
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -381,15 +401,21 @@ export default function ProfilePage() {
               <CardContent>
                 <div className="space-y-3">
                   {organizations.length === 0 ? (
-                    <p className="text-sm text-muted-foreground">
-                      No organization memberships found
-                    </p>
+                    <div className="text-center py-4">
+                      <Users className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+                      <p className="text-sm text-muted-foreground">
+                        No organization memberships found
+                      </p>
+                    </div>
                   ) : (
                     organizations.map((org) => (
                       <div key={org.id} className="flex items-center justify-between p-3 border rounded-lg">
-                        <div>
-                          <p className="font-medium text-sm">{org.name}</p>
-                          <p className="text-xs text-muted-foreground">{org.slug}</p>
+                        <div className="flex items-center gap-2">
+                          <StatusDot variant="success" />
+                          <div>
+                            <p className="font-medium text-sm">{org.name}</p>
+                            <p className="text-xs text-muted-foreground">{org.slug}</p>
+                          </div>
                         </div>
                         <Badge variant={getRoleBadgeVariant(`org_${org.role}`)}>
                           {getRoleDisplayName(`org_${org.role}`)}
@@ -415,13 +441,16 @@ export default function ProfilePage() {
               <CardContent>
                 <div className="space-y-2">
                   {userContext.permissions.length === 0 ? (
-                    <p className="text-sm text-muted-foreground">
-                      No specific permissions assigned
-                    </p>
+                    <div className="text-center py-4">
+                      <Shield className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+                      <p className="text-sm text-muted-foreground">
+                        No specific permissions assigned
+                      </p>
+                    </div>
                   ) : (
                     userContext.permissions.map((permission, index) => (
                       <div key={index} className="flex items-center gap-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <StatusDot variant="success" />
                         <span className="text-sm">{permission}</span>
                       </div>
                     ))
@@ -441,12 +470,13 @@ export default function ProfilePage() {
                     variant="outline" 
                     className="w-full justify-start"
                     onClick={handleSignOut}
+                    icon={Shield}
+                    iconPosition="left"
                   >
                     Sign Out
                   </Button>
                   <Link href="/settings" className="block">
-                    <Button variant="outline" className="w-full justify-start">
-                      <Settings className="h-4 w-4 mr-2" />
+                    <Button variant="outline" className="w-full justify-start" icon={Settings} iconPosition="left">
                       Account Settings
                     </Button>
                   </Link>

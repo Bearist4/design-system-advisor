@@ -7,7 +7,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
-import { Building2, Plus, Users } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { LoadingSpinner, StatusDot, EmptyState, Progress } from '@/components/ui/feedback'
+import { Building2, Plus, Users, CheckCircle, ArrowRight, Sparkles, Shield, X } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 interface Organization {
@@ -239,7 +241,7 @@ export default function OnboardingPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+          <LoadingSpinner size="lg" className="mx-auto mb-4" />
           <p className="mt-2 text-muted-foreground">Loading organizations...</p>
         </div>
       </div>
@@ -249,28 +251,36 @@ export default function OnboardingPage() {
   return (
     <div className="container mx-auto py-8">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold">Welcome to Design System Advisor</h1>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Sparkles className="h-8 w-8 text-primary" />
+            <h1 className="text-3xl font-bold">Welcome to Design System Advisor</h1>
+          </div>
           <p className="text-muted-foreground mt-2">
             Let&apos;s get you set up with an organization to manage your design tokens
           </p>
+          <div className="mt-4">
+            <Progress value={33} className="w-64 mx-auto" />
+            <p className="text-xs text-muted-foreground mt-2">Step 1 of 3: Organization Setup</p>
+          </div>
         </div>
 
         {organizations.length === 0 && !showCreateForm ? (
-          <div className="text-center py-12">
-            <Building2 className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-            <h2 className="text-2xl font-bold mb-2">No Organizations Found</h2>
-            <p className="text-muted-foreground mb-6">
-              You don&apos;t have access to any organizations yet. Create your first organization to get started.
-            </p>
-            <Button onClick={() => setShowCreateForm(true)}>
-              <Plus className="mr-2 h-4 w-4" />
-              Create Organization
-            </Button>
-          </div>
+          <EmptyState
+            icon="database"
+            title="No Organizations Found"
+            description="You don't have access to any organizations yet. Create your first organization to get started."
+            action={{
+              label: "Create Organization",
+              onClick: () => setShowCreateForm(true)
+            }}
+          />
         ) : (
           <div className="max-w-4xl mx-auto">
             <div className="mb-6">
-              <h2 className="text-xl font-semibold mb-2">Select an Organization</h2>
+              <div className="flex items-center gap-2 mb-2">
+                <h2 className="text-xl font-semibold">Select an Organization</h2>
+                <Badge variant="outline">{organizations.length} available</Badge>
+              </div>
               <p className="text-muted-foreground">
                 Choose an organization to continue, or create a new one
               </p>
@@ -287,16 +297,23 @@ export default function OnboardingPage() {
                     <CardDescription>{org.description || 'No description'}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex items-center text-sm text-muted-foreground mb-4">
-                      <Users className="mr-1 h-4 w-4" />
-                      Owner
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Users className="mr-1 h-4 w-4" />
+                        Owner
+                      </div>
+                      <StatusDot variant="success" />
                     </div>
                     <Button 
                       onClick={() => handleSelectOrganization(org.id)}
                       className="w-full"
                       disabled={selecting === org.id}
+                      icon={selecting === org.id ? undefined : ArrowRight}
+                      iconPosition="right"
+                      isLoading={selecting === org.id}
+                      loadingText="Selecting..."
                     >
-                      {selecting === org.id ? 'Selecting...' : 'Select Organization'}
+                      Select Organization
                     </Button>
                   </CardContent>
                 </Card>
@@ -311,12 +328,20 @@ export default function OnboardingPage() {
                   <CardDescription>Start a new organization</CardDescription>
                 </CardHeader>
                 <CardContent>
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <Shield className="mr-1 h-4 w-4" />
+                      You'll be the owner
+                    </div>
+                    <StatusDot variant="info" />
+                  </div>
                   <Button 
                     onClick={() => setShowCreateForm(true)}
                     variant="outline"
                     className="w-full"
+                    icon={Plus}
+                    iconPosition="left"
                   >
-                    <Plus className="mr-2 h-4 w-4" />
                     Create Organization
                   </Button>
                 </CardContent>
@@ -357,13 +382,22 @@ export default function OnboardingPage() {
                     />
                   </div>
                   <div className="flex gap-2">
-                    <Button type="submit" disabled={creating || !newOrgName.trim()}>
-                      {creating ? 'Creating...' : 'Create Organization'}
+                    <Button 
+                      type="submit" 
+                      disabled={creating || !newOrgName.trim()}
+                      icon={CheckCircle}
+                      iconPosition="left"
+                      isLoading={creating}
+                      loadingText="Creating..."
+                    >
+                      Create Organization
                     </Button>
                     <Button 
                       type="button" 
                       variant="outline" 
                       onClick={() => setShowCreateForm(false)}
+                      icon={X}
+                      iconPosition="left"
                     >
                       Cancel
                     </Button>

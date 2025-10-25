@@ -7,7 +7,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { ArrowLeft, User, Calendar, Trash2, Palette } from 'lucide-react'
+import { LoadingSpinner, StatusDot, EmptyState } from '@/components/ui/feedback'
+import { ArrowLeft, User, Calendar, Trash2, Palette, Shield, Settings as SettingsIcon, Info } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { ThemeToggle } from '@/components/ui/theme-toggle'
@@ -88,8 +89,8 @@ export default function SettingsPage() {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-2 text-muted-foreground">Loading...</p>
+          <LoadingSpinner size="lg" className="mx-auto mb-4" />
+          <p className="mt-2 text-muted-foreground">Loading settings...</p>
         </div>
       </div>
     )
@@ -98,13 +99,15 @@ export default function SettingsPage() {
   if (!user) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-2">Not authenticated</h1>
-          <p className="text-muted-foreground mb-4">Please sign in to access settings.</p>
-          <Link href="/login">
-            <Button>Sign In</Button>
-          </Link>
-        </div>
+        <EmptyState
+          icon="error"
+          title="Not authenticated"
+          description="Please sign in to access settings"
+          action={{
+            label: "Sign In",
+            onClick: () => router.push('/login')
+          }}
+        />
       </div>
     )
   }
@@ -113,8 +116,7 @@ export default function SettingsPage() {
     <div className="container mx-auto py-8">
         <div className="mb-6">
           <Link href="/dashboard">
-            <Button variant="outline" className="mb-4">
-              <ArrowLeft className="mr-2 h-4 w-4" />
+            <Button variant="outline" className="mb-4" icon={ArrowLeft} iconPosition="left">
               Back to Dashboard
             </Button>
           </Link>
@@ -158,8 +160,9 @@ export default function SettingsPage() {
                   variant="outline" 
                   onClick={() => setShowThemeShowcase(!showThemeShowcase)}
                   className="w-full"
+                  icon={Palette}
+                  iconPosition="left"
                 >
-                  <Palette className="mr-2 h-4 w-4" />
                   {showThemeShowcase ? 'Hide' : 'View'} Theme Showcase
                 </Button>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -204,10 +207,12 @@ export default function SettingsPage() {
 
               <div>
                 <Label htmlFor="provider">Authentication Provider</Label>
-                <div className="mt-1">
+                <div className="mt-1 flex items-center gap-2">
                   <Badge variant="secondary">
                     {String(user.app_metadata?.provider || 'email')}
                   </Badge>
+                  <StatusDot variant="success" />
+                  <span className="text-xs text-muted-foreground">Verified</span>
                 </div>
               </div>
 
@@ -230,7 +235,7 @@ export default function SettingsPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Button variant="outline" onClick={handleSignOut} className="w-full">
+                <Button variant="outline" onClick={handleSignOut} className="w-full" icon={Shield} iconPosition="left">
                   Sign Out
                 </Button>
                 <p className="text-xs text-muted-foreground mt-1">
@@ -244,9 +249,12 @@ export default function SettingsPage() {
                   onClick={handleDeleteAccount}
                   disabled={isDeleting}
                   className="w-full"
+                  icon={Trash2}
+                  iconPosition="left"
+                  isLoading={isDeleting}
+                  loadingText="Deleting..."
                 >
-                  <Trash2 className="mr-2 h-4 w-4" />
-                  {isDeleting ? 'Deleting...' : 'Delete Account'}
+                  Delete Account
                 </Button>
                 <p className="text-xs text-muted-foreground mt-1">
                   Permanently delete your account and all data
@@ -272,22 +280,51 @@ export default function SettingsPage() {
 
         <Card className="mt-6">
           <CardHeader>
-            <CardTitle>About Design System Advisor</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Info className="h-5 w-5" />
+              About Design System Advisor
+            </CardTitle>
             <CardDescription>
               Information about this application
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="space-y-2 text-sm">
-              <p>
-                <strong>Version:</strong> 1.0.0
-              </p>
-              <p>
-                <strong>Built with:</strong> Next.js 14, TypeScript, TailwindCSS, Supabase
-              </p>
-              <p>
-                <strong>Purpose:</strong> Manage and organize design tokens for your design system
-              </p>
+            <div className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Badge variant="outline">Version</Badge>
+                    <span className="text-sm">1.0.0</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="foundation">Framework</Badge>
+                    <span className="text-sm">Next.js 14</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="component">Language</Badge>
+                    <span className="text-sm">TypeScript</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <Badge variant="spacing">Styling</Badge>
+                    <span className="text-sm">TailwindCSS</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Badge variant="platform">Database</Badge>
+                    <span className="text-sm">Supabase</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <StatusDot variant="success" />
+                    <span className="text-sm text-muted-foreground">Active</span>
+                  </div>
+                </div>
+              </div>
+              <div className="border-t pt-4">
+                <p className="text-sm text-muted-foreground">
+                  <strong>Purpose:</strong> Manage and organize design tokens for your design system
+                </p>
+              </div>
             </div>
           </CardContent>
         </Card>

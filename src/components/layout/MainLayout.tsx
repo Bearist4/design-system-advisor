@@ -4,8 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import { Sidebar } from '@/components/ui/sidebar'
-import { Navbar } from '@/components/ui/navbar'
-import { ThemeToggleIcon } from '@/components/ui/theme-toggle'
+import { TopNav } from '@/components/ui/top-nav'
 
 interface User {
   id: string
@@ -96,13 +95,13 @@ export function MainLayout({ children }: MainLayoutProps) {
         {/* Main Content Area */}
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Top Navigation */}
-          <Navbar 
+          <TopNav 
             user={user} 
             onSignOut={handleSignOut}
           />
           
           {/* Page Content */}
-          <main className="flex-1 overflow-y-auto">
+          <main className="flex-1 overflow-y-auto" id="main-content">
             {children}
           </main>
         </div>

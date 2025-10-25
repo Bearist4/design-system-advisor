@@ -85,32 +85,4 @@ const LoadingOverlay: React.FC<LoadingOverlayProps> = ({
 }
 LoadingOverlay.displayName = "LoadingOverlay"
 
-// Skeleton loader for content placeholders
-interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: "text" | "circular" | "rectangular"
-}
-
-const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
-  ({ className, variant = "rectangular", ...props }, ref) => {
-    return (
-      <div
-        ref={ref}
-        role="status"
-        aria-label="Loading content"
-        className={cn(
-          "animate-pulse bg-muted",
-          {
-            "h-4 w-full rounded": variant === "text",
-            "h-12 w-12 rounded-full": variant === "circular",
-            "h-24 w-full rounded-md": variant === "rectangular",
-          },
-          className
-        )}
-        {...props}
-      />
-    )
-  }
-)
-Skeleton.displayName = "Skeleton"
-
-export { LoadingSpinner, LoadingOverlay, Skeleton, spinnerVariants }
+export { LoadingSpinner, LoadingOverlay, spinnerVariants }

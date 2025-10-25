@@ -196,53 +196,38 @@ export default function DataDisplayDemo() {
           <h2 className="text-2xl font-semibold tracking-tight">Alerts</h2>
           <div className="space-y-4">
             <Alert variant="success">
-              <CheckCircle2 className="h-5 w-5" />
-              <div>
-                <AlertTitle>Success</AlertTitle>
-                <AlertDescription>
-                  Your changes have been saved successfully.
-                </AlertDescription>
-              </div>
+              <AlertTitle>Success</AlertTitle>
+              <AlertDescription>
+                Your changes have been saved successfully.
+              </AlertDescription>
             </Alert>
 
             <Alert variant="warning">
-              <AlertTriangle className="h-5 w-5" />
-              <div>
-                <AlertTitle>Warning</AlertTitle>
-                <AlertDescription>
-                  You are approaching your storage limit. Consider upgrading your plan.
-                </AlertDescription>
-              </div>
+              <AlertTitle>Warning</AlertTitle>
+              <AlertDescription>
+                You are approaching your storage limit. Consider upgrading your plan.
+              </AlertDescription>
             </Alert>
 
             <Alert variant="error">
-              <AlertCircle className="h-5 w-5" />
-              <div>
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription>
-                  Failed to connect to the server. Please check your internet connection and try again.
-                </AlertDescription>
-              </div>
+              <AlertTitle>Error</AlertTitle>
+              <AlertDescription>
+                Failed to connect to the server. Please check your internet connection and try again.
+              </AlertDescription>
             </Alert>
 
             <Alert variant="info">
-              <Info className="h-5 w-5" />
-              <div>
-                <AlertTitle>Information</AlertTitle>
-                <AlertDescription>
-                  We&apos;ve updated our privacy policy. Please review the changes.
-                </AlertDescription>
-              </div>
+              <AlertTitle>Information</AlertTitle>
+              <AlertDescription>
+                We&apos;ve updated our privacy policy. Please review the changes.
+              </AlertDescription>
             </Alert>
 
             <Alert variant="info" dismissible>
-              <Info className="h-5 w-5" />
-              <div>
-                <AlertTitle>Dismissible Alert</AlertTitle>
-                <AlertDescription>
-                  This alert can be dismissed by clicking the X button.
-                </AlertDescription>
-              </div>
+              <AlertTitle>Dismissible Alert</AlertTitle>
+              <AlertDescription>
+                This alert can be dismissed by clicking the X button.
+              </AlertDescription>
             </Alert>
           </div>
         </section>

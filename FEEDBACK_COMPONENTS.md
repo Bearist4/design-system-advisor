@@ -62,7 +62,8 @@ Various loading state indicators.
 #### Basic Usage
 
 ```tsx
-import { LoadingSpinner, LoadingOverlay, Skeleton } from '@/components/ui/loading-spinner';
+import { LoadingSpinner, LoadingOverlay } from '@/components/ui/loading-spinner';
+import { Skeleton } from '@/components/ui/skeleton';
 
 // Simple spinner
 <LoadingSpinner size="lg" />
@@ -71,9 +72,9 @@ import { LoadingSpinner, LoadingOverlay, Skeleton } from '@/components/ui/loadin
 <LoadingOverlay label="Loading data..." />
 
 // Skeleton loaders
-<Skeleton variant="text" className="w-3/4" />
-<Skeleton variant="circular" />
-<Skeleton variant="rectangular" />
+<Skeleton className="h-4 w-3/4" />
+<Skeleton circle className="h-12 w-12" />
+<Skeleton className="h-24 w-full" />
 ```
 
 #### Spinner Sizes

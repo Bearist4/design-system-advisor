@@ -2,7 +2,7 @@
 export { StatusIndicator, StatusDot, statusIndicatorVariants } from '../status-indicator';
 export type { StatusIndicatorProps } from '../status-indicator';
 
-export { LoadingSpinner, LoadingOverlay, Skeleton, spinnerVariants } from '../loading-spinner';
+export { LoadingSpinner, LoadingOverlay, spinnerVariants } from '../loading-spinner';
 export type { LoadingSpinnerProps } from '../loading-spinner';
 
 export { Progress, CircularProgress, progressVariants, progressIndicatorVariants } from '../progress';
